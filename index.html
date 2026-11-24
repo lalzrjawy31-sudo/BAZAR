@@ -1,0 +1,3102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BAZAR | بازار — دليل المتاجر العراقية على إنستغرام وتيك توك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F4EFE6;
+      --bg-elevated: #FAF7F2;
+      --bg-card: #FFFFFF;
+      --ink: #29251F;
+      --ink-muted: #6B6257;
+      --gold: #A88B64;
+      --gold-dark: #8C714D;
+      --gold-soft: rgba(168, 139, 100, 0.14);
+      --border: #E2D9C8;
+      --success: #2E6F40;
+      --success-bg: #E8F4EC;
+      --danger: #9E2A2B;
+      --danger-bg: #FBEAEA;
+      --warning: #9C6615;
+      --warning-bg: #FDF4E3;
+      --shadow-sm: 0 4px 16px rgba(41, 37, 31, 0.05);
+      --shadow-md: 0 12px 32px rgba(41, 37, 31, 0.08);
+      --shadow-lg: 0 20px 48px rgba(41, 37, 31, 0.14);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(244, 239, 230, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--ink);
+      color: var(--bg);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.15rem;
+      border: 1px solid var(--gold);
+      flex-shrink: 0;
+    }
+
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-title { font-weight: 800; font-size: 1.18rem; color: var(--ink); }
+    .brand-sub { font-size: 0.72rem; color: var(--gold-dark); font-weight: 600; }
+
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .nav-btn:hover { background: var(--gold-soft); color: var(--gold-dark); }
+    .nav-btn.active { background: var(--ink); color: var(--bg); }
+
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+    .conn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+    .conn-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--warning);
+    }
+    .conn-pill.connected { background: var(--success-bg); color: var(--success); border-color: #B7DEC2; }
+    .conn-pill.connected .conn-dot { background: var(--success); }
+    .conn-pill.connecting { background: var(--warning-bg); color: var(--warning); border-color: #EED6A6; }
+    .conn-pill.connecting .conn-dot { background: var(--warning); animation: pulseDot 1s infinite; }
+    .conn-pill.failed { background: var(--danger-bg); color: var(--danger); border-color: #EBC0C0; }
+    .conn-pill.failed .conn-dot { background: var(--danger); }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-primary { background: var(--ink); color: var(--bg); }
+    .btn-primary:hover:not(:disabled) { background: var(--gold-dark); color: #fff; }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-gold:hover:not(:disabled) { background: var(--gold-dark); }
+    .btn-outline { background: transparent; border-color: var(--border); color: var(--ink); }
+    .btn-outline:hover:not(:disabled) { border-color: var(--gold); background: var(--gold-soft); }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-sm { padding: 6px 13px; font-size: 0.8rem; }
+
+    .mobile-toggle {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink);
+      font-size: 1.15rem;
+    }
+
+    .mobile-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 14px 18px 18px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-drawer.open { display: flex; }
+
+    .connection-error-panel {
+      display: none;
+      margin-top: 18px;
+      background: var(--danger-bg);
+      border: 1px solid #EBC0C0;
+      color: var(--danger);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .connection-error-panel.show { display: flex; }
+
+    .page-view { display: none; animation: fadeIn 0.25s ease; }
+    .page-view.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero { padding: 30px 0 26px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      color: var(--gold-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 3.1vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      color: var(--ink-muted);
+      font-size: 0.98rem;
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+
+    .search-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: var(--bg-card);
+      padding: 7px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 180px;
+      border: none;
+      background: transparent;
+      padding: 9px 12px;
+      font-size: 0.94rem;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item strong { display: block; font-size: 1.3rem; font-weight: 800; }
+    .stat-item span { font-size: 0.82rem; color: var(--ink-muted); }
+
+    .hero-visual {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+    .hero-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      left: 14px;
+      background: rgba(41, 37, 31, 0.9);
+      color: var(--bg);
+      padding: 12px 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid rgba(168, 139, 100, 0.45);
+    }
+    .hero-badge small { color: #E2CFAF; display: block; font-size: 0.75rem; }
+
+    .banners-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .dynamic-banner-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      min-height: 180px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      background: var(--ink);
+    }
+    .dynamic-banner-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.52;
+    }
+    .dynamic-banner-content {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      color: #fff;
+      width: 100%;
+    }
+
+    .section { padding: 28px 0; }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .section-head h2 { font-size: 1.5rem; font-weight: 800; }
+    .section-head p { color: var(--ink-muted); font-size: 0.92rem; }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .cat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .cat-card:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: var(--shadow-md); }
+    .cat-thumb { height: 138px; overflow: hidden; background: #E7DFD1; }
+    .cat-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .cat-body { padding: 14px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .cat-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+    .cat-body p { font-size: 0.83rem; color: var(--ink-muted); margin-bottom: 8px; }
+    .cat-count { font-size: 0.78rem; font-weight: 700; color: var(--gold-dark); }
+
+    .filter-panel {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 22px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .input-control, .select-control, .textarea-control {
+      width: 100%;
+      padding: 10px 13px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--ink);
+      font-size: 0.91rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    .input-control:focus, .select-control:focus, .textarea-control:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-soft);
+    }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+    }
+    .store-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+    .store-card:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: var(--shadow-md); }
+    .store-cover { height: 160px; position: relative; background: #E5DDD0; cursor: pointer; }
+    .store-cover img { width: 100%; height: 100%; object-fit: cover; }
+    .store-badges {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: rgba(41, 37, 31, 0.85);
+      color: #fff;
+    }
+    .badge-gold { background: var(--gold); color: #fff; }
+
+    .store-card-body {
+      padding: 16px;
+      padding-top: 32px;
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .store-logo-wrap {
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      border: 3px solid var(--bg-card);
+      overflow: hidden;
+      position: absolute;
+      top: -29px;
+      right: 16px;
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow-sm);
+    }
+    .store-logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .store-title-row h3 { font-size: 1.1rem; font-weight: 800; cursor: pointer; margin-bottom: 4px; }
+    .store-title-row h3:hover { color: var(--gold-dark); }
+    .store-meta {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .store-desc {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+    .store-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .social-pills { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+    .social-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--ink);
+      transition: var(--transition);
+    }
+    .social-icon-btn:hover { border-color: var(--gold); background: var(--gold-soft); color: var(--gold-dark); }
+
+    .promo-banner {
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      border: 1px solid var(--gold);
+    }
+    .promo-banner h2 { font-size: 1.6rem; margin-bottom: 10px; }
+    .promo-banner p { color: #D7CEC0; margin-bottom: 18px; }
+    .promo-banner img { border-radius: var(--radius-md); height: 210px; width: 100%; object-fit: cover; }
+
+    .detail-cover {
+      height: 270px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #E5DDD0;
+    }
+    .detail-cover img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-header-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-top: -48px;
+      position: relative;
+      z-index: 2;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .detail-identity { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .detail-logo {
+      width: 84px;
+      height: 84px;
+      border-radius: 18px;
+      border: 3px solid var(--gold);
+      overflow: hidden;
+      background: var(--bg-elevated);
+      flex-shrink: 0;
+    }
+    .detail-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card img { height: 190px; width: 100%; object-fit: cover; background: #ECE4D7; }
+    .product-body { padding: 13px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+    .product-price { color: var(--gold-dark); font-weight: 800; font-size: 0.92rem; }
+
+    .two-col-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .card-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: 0.86rem; font-weight: 700; color: var(--ink); }
+
+    .img-picker-box {
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .img-mode-tabs { display: flex; gap: 6px; }
+    .img-mode-btn {
+      flex: 1;
+      padding: 5px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--ink-muted);
+    }
+    .img-mode-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .img-preview-row { display: flex; align-items: center; gap: 10px; }
+    .img-preview-thumb {
+      width: 58px;
+      height: 58px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: #EAE2D3;
+      flex-shrink: 0;
+    }
+    .img-preview-meta { flex: 1; min-width: 0; font-size: 0.76rem; color: var(--ink-muted); }
+
+    .alert-box {
+      padding: 13px 16px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: none;
+    }
+    .alert-box.show { display: block; }
+    .alert-success { background: var(--success-bg); color: var(--success); border: 1px solid #B7DEC2; }
+    .alert-danger { background: var(--danger-bg); color: var(--danger); border: 1px solid #EBC0C0; }
+    .alert-warning { background: var(--warning-bg); color: var(--warning); border: 1px solid #EED6A6; }
+
+    .empty-state-box {
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 20px;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+    .empty-state-box h3 { margin-bottom: 6px; font-size: 1.15rem; }
+    .empty-state-box p { color: var(--ink-muted); font-size: 0.92rem; margin-bottom: 14px; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+    .kpi-card span { font-size: 0.82rem; color: var(--ink-muted); display: block; margin-bottom: 4px; }
+    .kpi-card strong { font-size: 1.5rem; font-weight: 800; }
+
+    .admin-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .tab-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .tab-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .admin-pane { display: none; }
+    .admin-pane.active { display: block; }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; }
+    th, td {
+      padding: 12px;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.86rem;
+      vertical-align: middle;
+    }
+    th { background: var(--bg-elevated); font-weight: 800; }
+
+    .status-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .status-pending { background: var(--warning-bg); color: var(--warning); }
+    .status-approved { background: var(--success-bg); color: var(--success); }
+    .status-rejected { background: var(--danger-bg); color: var(--danger); }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(41, 37, 31, 0.65);
+      z-index: 1200;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px 14px;
+      overflow-y: auto;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 720px;
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      margin: auto 0;
+    }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-footer {
+      margin-top: 52px;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 38px 0 24px;
+      border-top: 3px solid var(--gold);
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .footer-grid h4 { color: #E5D1B2; margin-bottom: 10px; font-size: 0.98rem; }
+    .footer-links { display: flex; flex-direction: column; gap: 7px; }
+    .footer-links button { background: none; border: none; color: #D7CEC0; text-align: right; cursor: pointer; font-size: 0.88rem; }
+    .footer-links button:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: #B8AE9E;
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(168, 139, 100, 0.35);
+      border-top-color: var(--gold-dark);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+    }
+    .btn .spinner { border-color: rgba(255,255,255,0.35); border-top-color: #fff; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 920px) {
+      .hero-grid, .promo-banner, .two-col-layout { grid-template-columns: 1fr; }
+      .filter-panel { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .nav-links, .nav-actions .desktop-only { display: none; }
+      .mobile-toggle { display: inline-flex; }
+      .hero-grid { padding: 20px; }
+      .filter-panel, .form-grid { grid-template-columns: 1fr; }
+      .detail-cover { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-bar">
+      <div class="brand" onclick="navigateTo('home')">
+        <div class="brand-mark">B</div>
+        <div class="brand-text">
+          <span class="brand-title">BAZAR | بازار</span>
+          <span class="brand-sub">دليل المتاجر العراقية الموثوقة</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="التنقل الرئيسي">
+        <button class="nav-btn active" data-nav="home" onclick="navigateTo('home')">الرئيسية</button>
+        <button class="nav-btn" data-nav="categories" onclick="navigateTo('categories')">التصنيفات</button>
+        <button class="nav-btn" data-nav="stores" onclick="navigateTo('stores')">جميع المتاجر</button>
+        <button class="nav-btn" data-nav="about" onclick="navigateTo('about')">عن بازار</button>
+        <button class="nav-btn" data-nav="join" onclick="navigateTo('join')">انضم كمتجر</button>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="conn-pill connecting" id="connectionStatusPill" title="حالة الاتصال بقاعدة بيانات Google Sheets">
+          <span class="conn-dot"></span>
+          <span id="connectionStatusText">جاري الاتصال...</span>
+        </div>
+        <button class="btn btn-gold btn-sm desktop-only" onclick="navigateTo('join')">+ أضف متجرك</button>
+        <button class="btn btn-outline btn-sm" id="headerAdminBtn" onclick="openAdminGate()">لوحة الإدارة</button>
+        <button class="mobile-toggle" aria-label="القائمة" onclick="toggleMobileMenu()">☰</button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+      <button class="nav-btn" data-nav="home" onclick="navigateTo('home')">الرئيسية</button>
+      <button class="nav-btn" data-nav="categories" onclick="navigateTo('categories')">التصنيفات</button>
+      <button class="nav-btn" data-nav="stores" onclick="navigateTo('stores')">جميع المتاجر</button>
+      <button class="nav-btn" data-nav="about" onclick="navigateTo('about')">عن بازار</button>
+      <button class="nav-btn" data-nav="join" onclick="navigateTo('join')">انضم كمتجر</button>
+      <button class="btn btn-outline btn-sm" onclick="openAdminGate()">لوحة الإدارة</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="connection-error-panel" id="connectionErrorPanel" role="alert">
+      <div>
+        <strong>فشل الاتصال بقاعدة بيانات Google Sheets</strong>
+        <div id="connectionErrorMessage" style="font-size:0.86rem;margin-top:2px;"></div>
+      </div>
+      <button class="btn btn-danger btn-sm" onclick="loadPublicBootstrapData()">إعادة المحاولة ↻</button>
+    </div>
+
+    <section id="view-home" class="page-view active">
+      <div class="hero">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">منصة الاكتشاف التجاري الأولى في العراق</span>
+            <h1 id="heroTitleText">اكتشف نخبة المتاجر العراقية على إنستغرام وتيك توك في مكان واحد</h1>
+            <p id="heroSubtitleText">دليل منسّق يجمع أرقى العلامات التجارية والمتاجر المحلية في بغداد والبصرة وأربيل وجميع المحافظات العراقية، مع تواصل مباشر مع البائع.</p>
+            <div class="search-box">
+              <input type="text" id="homeSearchInput" placeholder="ابحث عن متجر، عطور، أزياء، إلكترونيات، أو مدينة..." onkeydown="if(event.key==='Enter') triggerHomeSearch()" />
+              <button class="btn btn-primary" onclick="triggerHomeSearch()">بحث في الدليل</button>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <strong id="statStoreCount">0</strong>
+                <span>متجر عراقي معتمد</span>
+              </div>
+              <div class="stat-item">
+                <strong id="statCatCount">0</strong>
+                <span>تصنيف تجاري متنوع</span>
+              </div>
+              <div class="stat-item">
+                <strong>18</strong>
+                <span>محافظة عراقية</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <img id="heroBannerImg" src="" alt="التسوق والمتاجر العراقية" loading="lazy" onerror="handleImgFallback(this, 'cover')" />
+            <div class="hero-badge">
+              <div>
+                <small>تصفح مباشر بدون وسطاء</small>
+                <strong>انتقل إلى حساب المتجر الرسمي بنقرة واحدة</strong>
+              </div>
+              <button class="btn btn-gold btn-sm" onclick="navigateTo('stores')">استكشف</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="banners-strip" id="homeDynamicBanners"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <h2>تصفح حسب التصنيف</h2>
+            <p>اختر الفئة التي تهمك للوصول إلى المتاجر المتخصصة</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="navigateTo('categories')">عرض كل التصنيفات ←</button>
+        </div>
+        <div class="cat-grid" id="homeCategoriesGrid"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <h2>متاجر مختارة في بازار</h2>
+            <p>متاجر عراقية مميزة تم اختيارها بعناية لجودة منتجاتها وهويتها</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="navigateTo('stores')">جميع المتاجر ←</button>
+        </div>
+        <div class="store-grid" id="homeFeaturedStoresGrid"></div>
+      </div>
+
+      <div class="section">
+        <div class="promo-banner">
+          <div>
+            <span class="eyebrow" style="background:rgba(168,139,100,0.22);color:#E5D1B2;">لأصحاب المشاريع والمتاجر</span>
+            <h2>هل تمتلك متجراً على إنستغرام أو تيك توك في العراق؟</h2>
+            <p>أدرج متجرك مجاناً في دليل بازار ليصل إليك آلاف المتسوقين الباحثين عن منتجاتك في محافظتك وعموم العراق.</p>
+            <button class="btn btn-gold" onclick="navigateTo('join')">سجّل متجرك الآن مجاناً</button>
+          </div>
+          <img id="homePromoImg" src="" alt="أصحاب المتاجر العراقية" loading="lazy" onerror="handleImgFallback(this, 'cover')" />
+        </div>
+      </div>
+    </section>
+
+    <section id="view-categories" class="page-view">
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">أقسام الدليل</span>
+            <h2>جميع تصنيفات المتاجر</h2>
+            <p>اضغط على أي تصنيف لعرض المتاجر العراقية المتخصصة فيه</p>
+          </div>
+        </div>
+        <div class="cat-grid" id="allCategoriesGrid"></div>
+      </div>
+    </section>
+
+    <section id="view-stores" class="page-view">
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">الدليل الكامل</span>
+            <h2 id="storesPageHeading">جميع المتاجر العراقية</h2>
+            <p id="storesResultCount">جاري تحميل المتاجر...</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="resetStoreFilters()">إعادة ضبط الفلاتر</button>
+        </div>
+
+        <div class="filter-panel">
+          <input type="text" class="input-control" id="filterSearchInput" placeholder="ابحث بالاسم أو الوصف أو المنتج..." oninput="renderStoresDirectory()" />
+          <select class="select-control" id="filterCategorySelect" onchange="renderStoresDirectory()">
+            <option value="">كل التصنيفات</option>
+          </select>
+          <select class="select-control" id="filterCitySelect" onchange="renderStoresDirectory()">
+            <option value="">كل المحافظات العراقية</option>
+          </select>
+          <select class="select-control" id="filterPlatformSelect" onchange="renderStoresDirectory()">
+            <option value="">كل المنصات (إنستغرام وتيك توك)</option>
+            <option value="instagram">متوفر على إنستغرام</option>
+            <option value="tiktok">متوفر على تيك توك</option>
+            <option value="both">إنستغرام + تيك توك معاً</option>
+          </select>
+        </div>
+
+        <div class="store-grid" id="directoryStoresGrid"></div>
+      </div>
+    </section>
+
+    <section id="view-store-detail" class="page-view">
+      <div class="section" id="storeDetailContainer"></div>
+    </section>
+
+    <section id="view-about" class="page-view">
+      <div class="section">
+        <div class="hero-grid" style="margin-bottom:24px;">
+          <div>
+            <span class="eyebrow">عن المنصة</span>
+            <h2>بازار: واجهة التجارة الإلكترونية العراقية الحديثة</h2>
+            <p>انطلقت منصة <strong>BAZAR (بازار)</strong> لتنظيم وتسهيل اكتشاف المتاجر العراقية النشطة على منصتي إنستغرام وتيك توك، ومنح المتسوق العراقي تجربة تصفح راقية وموثوقة بعيداً عن عشوائية البحث في وسائل التواصل الاجتماعي.</p>
+            <p style="margin-bottom:0;">نحن دليل تجاري ذكي يربط العميل مباشرة بحساب البائع الرسمي دون عمولات وساطة أو تعقيدات دفع إلكتروني.</p>
+          </div>
+          <div class="hero-visual">
+            <img id="aboutBannerImg" src="" alt="ريادة الأعمال في العراق" loading="lazy" onerror="handleImgFallback(this, 'cover')" />
+          </div>
+        </div>
+
+        <div class="cat-grid">
+          <div class="card-panel">
+            <h3 style="margin-bottom:6px;">اكتشاف سهل وموثوق</h3>
+            <p style="color:var(--ink-muted);font-size:0.9rem;">تصنيف دقيق حسب الفئة والمحافظة والمنصة الاجتماعية للوصول السريع للمتاجر العراقية.</p>
+          </div>
+          <div class="card-panel">
+            <h3 style="margin-bottom:6px;">دعم إنستغرام وتيك توك</h3>
+            <p style="color:var(--ink-muted);font-size:0.9rem;">نجمع حضور المتجر على إنستغرام وتيك توك ورقم التواصل المباشر في صفحة تعريفية واحدة متكاملة.</p>
+          </div>
+          <div class="card-panel">
+            <h3 style="margin-bottom:6px;">دعم المشاريع المحلية</h3>
+            <p style="color:var(--ink-muted);font-size:0.9rem;">نساعد رواد الأعمال وأصحاب المتاجر الناشئة في العراق على بناء حضور رقمي احترافي.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-join" class="page-view">
+      <div class="section">
+        <div class="two-col-layout">
+          <div class="card-panel" style="background:var(--bg-elevated);">
+            <img id="joinBannerImg" src="" alt="انضم إلى بازار" style="border-radius:14px;height:220px;width:100%;object-fit:cover;margin-bottom:18px;" loading="lazy" onerror="handleImgFallback(this, 'cover')" />
+            <span class="eyebrow">انضم إلى دليل بازار</span>
+            <h2 style="margin-bottom:10px;">أضف متجرك إلى الدليل العراقي</h2>
+            <p style="color:var(--ink-muted);margin-bottom:14px;">املأ بيانات متجرك بدقة. سيقوم فريق الإدارة بمراجعة طلبك ونشر صفحة متجرك الكاملة مع روابط إنستغرام وتيك توك.</p>
+            <ul style="padding-right:18px;color:var(--ink-muted);font-size:0.9rem;display:flex;flex-direction:column;gap:7px;">
+              <li>صفحة مخصصة لمتجرك تعرض الشعار والغلاف والمنتجات.</li>
+              <li>أزرار انتقال مباشرة إلى حسابك على إنستغرام وتيك توك وواتساب.</li>
+              <li>ظهور في نتائج البحث حسب المحافظة والتصنيف.</li>
+            </ul>
+          </div>
+
+          <div class="card-panel">
+            <h3 style="margin-bottom:6px;font-size:1.3rem;">نموذج تسجيل متجر جديد</h3>
+            <p style="color:var(--ink-muted);font-size:0.86rem;margin-bottom:16px;">الحقول المميزة بعلامة (*) مطلوبة، ويجب إدخال حساب إنستغرام أو تيك توك واحد على الأقل.</p>
+
+            <div id="joinFormAlert" class="alert-box" role="alert"></div>
+
+            <form id="storeApplicationForm" onsubmit="handleStoreApplicationSubmit(event)" novalidate>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="appStoreName">اسم المتجر *</label>
+                  <input type="text" id="appStoreName" class="input-control" placeholder="مثال: دار بغداد للعطور" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="appOwnerName">الاسم الكامل لصاحب المتجر *</label>
+                  <input type="text" id="appOwnerName" class="input-control" placeholder="الاسم الثلاثي" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="appCategory">تصنيف المتجر *</label>
+                  <select id="appCategory" class="select-control" required></select>
+                </div>
+
+                <div class="form-group">
+                  <label for="appCity">المدينة / المحافظة *</label>
+                  <select id="appCity" class="select-control" required></select>
+                </div>
+
+                <div class="form-group">
+                  <label for="appInstagram">رابط أو اسم حساب إنستغرام</label>
+                  <input type="text" id="appInstagram" class="input-control" placeholder="@username أو https://instagram.com/..." dir="ltr" />
+                </div>
+
+                <div class="form-group">
+                  <label for="appTiktok">رابط أو اسم حساب تيك توك</label>
+                  <input type="text" id="appTiktok" class="input-control" placeholder="@username أو https://tiktok.com/@..." dir="ltr" />
+                </div>
+
+                <div class="form-group">
+                  <label for="appPhone">رقم الهاتف (اختياري)</label>
+                  <input type="tel" id="appPhone" class="input-control" placeholder="0770 000 0000" dir="ltr" />
+                </div>
+
+                <div class="form-group">
+                  <label for="appWhatsapp">رقم واتساب (اختياري)</label>
+                  <input type="tel" id="appWhatsapp" class="input-control" placeholder="9647700000000" dir="ltr" />
+                </div>
+
+                <div class="form-group full">
+                  <label for="appAddress">العنوان أو مناطق التوصيل (اختياري)</label>
+                  <input type="text" id="appAddress" class="input-control" placeholder="مثال: بغداد - المنصور / توصيل لجميع المحافظات" />
+                </div>
+
+                <div class="form-group">
+                  <label for="appLogoUrl">رابط شعار المتجر (اختياري)</label>
+                  <input type="url" id="appLogoUrl" class="input-control" placeholder="https://..." dir="ltr" />
+                </div>
+
+                <div class="form-group">
+                  <label for="appCoverUrl">رابط صورة الغلاف (اختياري)</label>
+                  <input type="url" id="appCoverUrl" class="input-control" placeholder="https://..." dir="ltr" />
+                </div>
+
+                <div class="form-group full">
+                  <label for="appDescription">نبذة عن المتجر ومنتجاته *</label>
+                  <textarea id="appDescription" class="textarea-control" rows="4" placeholder="اكتب وصفاً واضحاً عن المنتجات التي يقدمها متجرك..." required></textarea>
+                </div>
+
+                <div class="form-group full">
+                  <button type="submit" id="appSubmitBtn" class="btn btn-primary" style="width:100%;padding:12px;">
+                    إرسال طلب انضمام المتجر
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-admin" class="page-view">
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">إدارة المنصة — Google Sheets & Drive</span>
+            <h2>لوحة تحكم مدير بازار</h2>
+            <p id="adminConnectionStatus">متصل بقاعدة بيانات Google Sheets</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-outline btn-sm" onclick="refreshAdminDataFromServer()">تحديث البيانات ↻</button>
+            <button class="btn btn-gold btn-sm" onclick="openStoreEditorModal()">+ إضافة متجر</button>
+            <button class="btn btn-danger btn-sm" onclick="adminLogout()">تسجيل خروج</button>
+          </div>
+        </div>
+
+        <div id="adminGlobalAlert" class="alert-box"></div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span>المتاجر المنشورة</span>
+            <strong id="kpiPublished">0</strong>
+          </div>
+          <div class="kpi-card">
+            <span>طلبات قيد المراجعة</span>
+            <strong id="kpiPending" style="color:var(--warning);">0</strong>
+          </div>
+          <div class="kpi-card">
+            <span>إجمالي التصنيفات</span>
+            <strong id="kpiCategories">0</strong>
+          </div>
+          <div class="kpi-card">
+            <span>إجمالي المنتجات</span>
+            <strong id="kpiProducts">0</strong>
+          </div>
+          <div class="kpi-card">
+            <span>البانرات النشطة</span>
+            <strong id="kpiBanners">0</strong>
+          </div>
+        </div>
+
+        <div class="admin-tabs">
+          <button class="tab-btn active" onclick="switchAdminTab('applications', this)">طلبات الانضمام (<span id="tabPendingBadge">0</span>)</button>
+          <button class="tab-btn" onclick="switchAdminTab('stores', this)">المتاجر والمنتجات</button>
+          <button class="tab-btn" onclick="switchAdminTab('categories', this)">التصنيفات</button>
+          <button class="tab-btn" onclick="switchAdminTab('banners', this)">البانرات الإعلانية</button>
+          <button class="tab-btn" onclick="switchAdminTab('media', this)">إعدادات الموقع</button>
+          <button class="tab-btn" onclick="switchAdminTab('migration', this)">الترحيل والبيانات</button>
+          <button class="tab-btn" onclick="switchAdminTab('security', this)">أمان المدير</button>
+        </div>
+
+        <div id="admin-pane-applications" class="admin-pane active">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>المتجر وصاحب الطلب</th>
+                  <th>التصنيف والمحافظة</th>
+                  <th>الحسابات والهاتف</th>
+                  <th>تاريخ التقديم</th>
+                  <th>الحالة</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="adminApplicationsTbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="admin-pane-stores" class="admin-pane">
+          <div style="margin-bottom:12px;display:flex;gap:10px;flex-wrap:wrap;">
+            <input type="text" id="adminStoreSearch" class="input-control" style="max-width:340px;" placeholder="بحث في المتاجر..." oninput="renderAdminStoresTable()" />
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>المتجر</th>
+                  <th>التصنيف / المدينة</th>
+                  <th>الحسابات</th>
+                  <th>المنتجات</th>
+                  <th>الحالة</th>
+                  <th>التحكم</th>
+                </tr>
+              </thead>
+              <tbody id="adminStoresTbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="admin-pane-categories" class="admin-pane">
+          <div class="card-panel" style="margin-bottom:16px;">
+            <h4 style="margin-bottom:10px;">إضافة أو تعديل تصنيف</h4>
+            <div id="categorySaveAlert" class="alert-box"></div>
+            <div class="form-grid">
+              <input type="hidden" id="editCatId" />
+              <div class="form-group">
+                <label>اسم التصنيف *</label>
+                <input type="text" id="catNameInput" class="input-control" placeholder="مثال: عطور وبخور" />
+              </div>
+              <div class="form-group">
+                <label>ترتيب العرض (رقم)</label>
+                <input type="number" id="catSortInput" class="input-control" value="1" />
+              </div>
+              <div class="form-group full">
+                <label>وصف مختصر للتصنيف</label>
+                <input type="text" id="catDescInput" class="input-control" placeholder="وصف يظهر في بطاقة التصنيف" />
+              </div>
+              <div class="form-group full">
+                <label>صورة التصنيف (رفع إلى Google Drive أو رابط URL)</label>
+                <div id="picker-catImage"></div>
+              </div>
+              <div class="form-group full" style="flex-direction:row;gap:8px;">
+                <button class="btn btn-primary btn-sm" id="saveCatBtn" onclick="saveCategoryItem()">حفظ التصنيف</button>
+                <button class="btn btn-outline btn-sm" onclick="clearCategoryForm()">إلغاء</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>الصورة</th>
+                  <th>اسم التصنيف</th>
+                  <th>الوصف</th>
+                  <th>عدد المتاجر</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="adminCategoriesTbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="admin-pane-banners" class="admin-pane">
+          <div class="card-panel" style="margin-bottom:16px;">
+            <h4 style="margin-bottom:10px;">إضافة أو تعديل بانر إعلاني</h4>
+            <div id="bannerSaveAlert" class="alert-box"></div>
+            <div class="form-grid">
+              <input type="hidden" id="editBannerId" />
+              <div class="form-group">
+                <label>عنوان البانر *</label>
+                <input type="text" id="bnrTitleInput" class="input-control" placeholder="مثال: تشكيلة رمضان للعطور" />
+              </div>
+              <div class="form-group">
+                <label>نص فرعي</label>
+                <input type="text" id="bnrSubtitleInput" class="input-control" placeholder="وصف قصير للعرض" />
+              </div>
+              <div class="form-group">
+                <label>رابط التوجيه (اختياري)</label>
+                <input type="url" id="bnrLinkInput" class="input-control" placeholder="https://..." dir="ltr" />
+              </div>
+              <div class="form-group">
+                <label>نص الزر</label>
+                <input type="text" id="bnrBtnTextInput" class="input-control" value="استكشف الآن" />
+              </div>
+              <div class="form-group full">
+                <label>صورة البانر * (Google Drive أو URL)</label>
+                <div id="picker-bannerImage"></div>
+              </div>
+              <div class="form-group full">
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                  <input type="checkbox" id="bnrActiveInput" checked /> تفعيل البانر في الصفحة الرئيسية
+                </label>
+              </div>
+              <div class="form-group full" style="flex-direction:row;gap:8px;">
+                <button class="btn btn-primary btn-sm" id="saveBannerBtn" onclick="saveBannerItem()">حفظ البانر</button>
+                <button class="btn btn-outline btn-sm" onclick="clearBannerForm()">إلغاء</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>الصورة</th>
+                  <th>العنوان</th>
+                  <th>الحالة</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="adminBannersTbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="admin-pane-media" class="admin-pane">
+          <div class="card-panel">
+            <h4 style="margin-bottom:12px;">إعدادات الصور والنصوص الرئيسية</h4>
+            <div id="mediaSaveAlert" class="alert-box"></div>
+            <div class="form-grid">
+              <div class="form-group full">
+                <label>العنوان الرئيسي في الصفحة الرئيسية</label>
+                <input type="text" id="setHeroTitle" class="input-control" />
+              </div>
+              <div class="form-group full">
+                <label>النص التعريفي أسفل العنوان الرئيسي</label>
+                <textarea id="setHeroSubtitle" class="textarea-control" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label>صورة بانر الصفحة الرئيسية</label>
+                <div id="picker-setHeroImg"></div>
+              </div>
+              <div class="form-group">
+                <label>صورة قسم انضمام المتاجر</label>
+                <div id="picker-setPromoImg"></div>
+              </div>
+              <div class="form-group">
+                <label>صورة صفحة عن بازار</label>
+                <div id="picker-setAboutImg"></div>
+              </div>
+              <div class="form-group">
+                <label>صورة صفحة انضم كمتجر</label>
+                <div id="picker-setJoinImg"></div>
+              </div>
+              <div class="form-group full">
+                <button class="btn btn-primary" id="saveSettingsBtn" onclick="saveSiteSettings()">حفظ الإعدادات في Google Sheets</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="admin-pane-migration" class="admin-pane">
+          <div class="card-panel">
+            <h4 style="margin-bottom:8px;">استيراد البيانات الأولية أو ترحيل بيانات سابقة</h4>
+            <p style="color:var(--ink-muted);font-size:0.88rem;margin-bottom:14px;">
+              إذا كانت قاعدة بيانات Google Sheets جديدة وفارغة، يمكنك استيراد التصنيفات والمتاجر العراقية التأسيسية بنقرة واحدة، أو لصق ملف JSON.
+            </p>
+            <div id="migrationAlert" class="alert-box"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;">
+              <button class="btn btn-gold btn-sm" id="seedInitialBtn" onclick="importDefaultBazarSeed()">استيراد التصنيفات والمتاجر التأسيسية إلى Google Sheets</button>
+            </div>
+            <div class="form-group">
+              <label>استيراد مخصص بصيغة JSON (اختياري)</label>
+              <textarea id="migrationJsonInput" class="textarea-control" rows="5" dir="ltr" placeholder='{"categories":[...], "stores":[...]}'></textarea>
+            </div>
+            <button class="btn btn-primary btn-sm" style="margin-top:10px;" onclick="importCustomMigrationJson()">استيراد JSON إلى Google Sheets</button>
+          </div>
+        </div>
+
+        <div id="admin-pane-security" class="admin-pane">
+          <div class="card-panel" style="max-width:520px;">
+            <h4 style="margin-bottom:8px;">تغيير كلمة مرور المدير</h4>
+            <p style="color:var(--ink-muted);font-size:0.86rem;margin-bottom:14px;">
+              تُحفظ كلمة المرور مشفّرة (Iterated SHA-256 + Salt) داخل خصائص خادم Google Apps Script فقط.
+            </p>
+            <div id="securityAlert" class="alert-box"></div>
+            <form onsubmit="handleAdminPasswordChange(event)">
+              <div class="form-group" style="margin-bottom:10px;">
+                <label>كلمة المرور الحالية</label>
+                <input type="password" id="secCurrentPass" class="input-control" required dir="ltr" />
+              </div>
+              <div class="form-group" style="margin-bottom:10px;">
+                <label>كلمة المرور الجديدة (8 أحرف على الأقل)</label>
+                <input type="password" id="secNewPass" class="input-control" minlength="8" required dir="ltr" />
+              </div>
+              <div class="form-group" style="margin-bottom:14px;">
+                <label>تأكيد كلمة المرور الجديدة</label>
+                <input type="password" id="secConfirmPass" class="input-control" minlength="8" required dir="ltr" />
+              </div>
+              <button type="submit" id="secUpdateBtn" class="btn btn-primary">تحديث كلمة المرور</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div class="modal-backdrop" id="adminLoginModal">
+    <div class="modal-box" style="max-width:420px;">
+      <div class="modal-head">
+        <h3>تسجيل دخول المدير</h3>
+        <button class="btn btn-outline btn-sm" onclick="closeModal('adminLoginModal')">✕</button>
+      </div>
+      <div id="adminLoginAlert" class="alert-box"></div>
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="form-group" style="margin-bottom:12px;">
+          <label for="adminUserInput">اسم المستخدم</label>
+          <input type="text" id="adminUserInput" class="input-control" required dir="ltr" autocomplete="username" />
+        </div>
+        <div class="form-group" style="margin-bottom:16px;">
+          <label for="adminPasswordInput">كلمة المرور</label>
+          <input type="password" id="adminPasswordInput" class="input-control" required dir="ltr" autocomplete="current-password" />
+        </div>
+        <button type="submit" id="adminLoginSubmitBtn" class="btn btn-primary" style="width:100%;">دخول إلى لوحة التحكم</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="storeEditorModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="storeModalTitle">إضافة / تعديل متجر</h3>
+        <button class="btn btn-outline btn-sm" onclick="closeModal('storeEditorModal')">✕</button>
+      </div>
+      <div id="storeModalAlert" class="alert-box"></div>
+      <form id="adminStoreForm" onsubmit="saveAdminStore(event)">
+        <input type="hidden" id="editStoreId" />
+        <div class="form-grid">
+          <div class="form-group">
+            <label>اسم المتجر *</label>
+            <input type="text" id="edStoreName" class="input-control" required />
+          </div>
+          <div class="form-group">
+            <label>اسم المالك</label>
+            <input type="text" id="edOwnerName" class="input-control" />
+          </div>
+          <div class="form-group">
+            <label>التصنيف *</label>
+            <select id="edCategory" class="select-control" required></select>
+          </div>
+          <div class="form-group">
+            <label>المحافظة *</label>
+            <select id="edCity" class="select-control" required></select>
+          </div>
+          <div class="form-group">
+            <label>حساب إنستغرام</label>
+            <input type="text" id="edInstagram" class="input-control" placeholder="@username أو رابط كامل" dir="ltr" />
+          </div>
+          <div class="form-group">
+            <label>حساب تيك توك</label>
+            <input type="text" id="edTiktok" class="input-control" placeholder="@username أو رابط كامل" dir="ltr" />
+          </div>
+          <div class="form-group">
+            <label>رقم الهاتف</label>
+            <input type="text" id="edPhone" class="input-control" dir="ltr" />
+          </div>
+          <div class="form-group">
+            <label>رقم واتساب (مثال: 9647700000000)</label>
+            <input type="text" id="edWhatsapp" class="input-control" dir="ltr" />
+          </div>
+          <div class="form-group full">
+            <label>العنوان / مناطق التوصيل</label>
+            <input type="text" id="edAddress" class="input-control" />
+          </div>
+
+          <div class="form-group">
+            <label>شعار المتجر (Google Drive أو URL)</label>
+            <div id="picker-edLogo"></div>
+          </div>
+
+          <div class="form-group">
+            <label>صورة غلاف المتجر (Google Drive أو URL)</label>
+            <div id="picker-edCover"></div>
+          </div>
+
+          <div class="form-group full">
+            <label>وصف المتجر *</label>
+            <textarea id="edDescription" class="textarea-control" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <input type="checkbox" id="edPublished" checked /> متجر منشور للزوار
+            </label>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <input type="checkbox" id="edFeatured" /> تمييز في الصفحة الرئيسية
+            </label>
+          </div>
+
+          <div class="form-group full" style="border-top:1px solid var(--border);padding-top:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <label>معرض منتجات المتجر</label>
+              <button type="button" class="btn btn-outline btn-sm" onclick="addProductRowToEditor()">+ إضافة منتج</button>
+            </div>
+            <div id="edProductsContainer" style="display:flex;flex-direction:column;gap:10px;"></div>
+          </div>
+
+          <div class="form-group full" style="margin-top:6px;">
+            <button type="submit" id="saveStoreModalBtn" class="btn btn-primary" style="width:100%;">حفظ بيانات المتجر في Google Sheets</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="appInspectModal">
+    <div class="modal-box" style="max-width:540px;">
+      <div class="modal-head">
+        <h3>تفاصيل طلب انضمام المتجر</h3>
+        <button class="btn btn-outline btn-sm" onclick="closeModal('appInspectModal')">✕</button>
+      </div>
+      <div id="appInspectBody"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 style="margin-bottom:8px;">BAZAR | بازار</h3>
+          <p style="color:#D7CEC0;font-size:0.88rem;max-width:360px;">المنصة العراقية الجامعة لأفضل المتاجر المحلية على إنستغرام وتيك توك. اكتشف، قارن، وتواصل مباشرة مع أصحاب المشاريع في العراق.</p>
+        </div>
+        <div class="footer-links">
+          <h4>روابط سريعة</h4>
+          <button onclick="navigateTo('home')">الرئيسية</button>
+          <button onclick="navigateTo('categories')">التصنيفات</button>
+          <button onclick="navigateTo('stores')">جميع المتاجر</button>
+          <button onclick="navigateTo('about')">عن بازار</button>
+          <button onclick="navigateTo('join')">انضم كمتجر</button>
+        </div>
+        <div class="footer-links">
+          <h4>لأصحاب المتاجر</h4>
+          <button onclick="navigateTo('join')">تسجيل متجر جديد</button>
+          <button onclick="openAdminGate()">دخول الإدارة</button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 BAZAR Iraq — جميع الحقوق محفوظة</span>
+        <span>يعمل على Google Sites + Google Sheets + Google Drive</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/plain" id="bazar-app-src">
+    const BAZAR_CONFIG = {
+      APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbyvp1wrqvT-TdwyolUYOlp7kOAsEAc_qadWLd8c0BBnLk0duxL7OecG6dsBrXwsGxwV/exec",
+      REQUEST_TIMEOUT_MS: 25000
+    };
+
+    const IRAQI_CITIES = [
+      "بغداد", "البصرة", "أربيل", "السليمانية", "دهوك",
+      "نينوى (الموصل)", "النجف", "كربلاء", "بابل", "ذي قار",
+      "الأنبار", "ديالى", "كركوك", "واسط", "ميسان",
+      "القادسية", "المثنى", "صلاح الدين"
+    ];
+
+    const FALLBACK_IMAGES = {
+      logo: "https://images.unsplash.com/photo-1560393464-5c69a73c5770?auto=format&fit=crop&w=300&q=80",
+      cover: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80",
+      product: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+      category: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=700&q=80"
+    };
+
+    const DEFAULT_SITE_SETTINGS = {
+      heroTitle: "اكتشف نخبة المتاجر العراقية على إنستغرام وتيك توك في مكان واحد",
+      heroSubtitle: "دليل منسّق يجمع أرقى العلامات التجارية والمتاجر المحلية في بغداد والبصرة وأربيل وجميع المحافظات العراقية، مع تواصل مباشر مع البائع.",
+      heroImg: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1000&q=80",
+      promoImg: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80",
+      aboutImg: "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1000&q=80",
+      joinImg: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80"
+    };
+
+    const INITIAL_MIGRATION_SEED = {
+      categories: [
+        { name: "عطور وبخور", description: "عطور شرقية وفرنسية أصلية ومخلطات فاخرة", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=80", sortOrder: 1 },
+        { name: "أزياء وملابس", description: "تصاميم عصرية وعباءات وملابس رجالية ونسائية", image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80", sortOrder: 2 },
+        { name: "تجميل وعناية", description: "مستحضرات العناية بالبشرة والشعر والمكياج", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80", sortOrder: 3 },
+        { name: "إلكترونيات وإكسسوارات", description: "هواتف ذكية، ساعات، وإكسسوارات تقنية", image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?auto=format&fit=crop&w=700&q=80", sortOrder: 4 },
+        { name: "ساعات ومجوهرات", description: "إكسسوارات يدوية وفضيات وساعات كلاسيكية", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=700&q=80", sortOrder: 5 },
+        { name: "ديكور وهدايا", description: "تحف منزلية، شموع معطرة، وتنسيق هدايا", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=700&q=80", sortOrder: 6 }
+      ],
+      stores: [
+        {
+          name: "دار العود البغدادي",
+          ownerName: "أحمد السامرائي",
+          category: "عطور وبخور",
+          city: "بغداد",
+          address: "بغداد - الكرادة / توصيل لجميع المحافظات",
+          description: "متجر متخصص بالعطور الشرقية النادرة ودهن العود الكمبودي والهندي مع تغليف فاخر وتوصيل لكافة المحافظات.",
+          instagram: "https://www.instagram.com/daraloud.iq/",
+          tiktok: "https://www.tiktok.com/@daraloud.iq",
+          phone: "07712345678",
+          whatsapp: "9647712345678",
+          logo: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=300&q=80",
+          cover: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=1000&q=80",
+          status: "published",
+          featured: true,
+          products: [
+            { name: "عطر ليالي دجلة الملكي", price: "65,000 د.ع", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80" },
+            { name: "مبخرة نحاسية يدوية", price: "40,000 د.ع", image: "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=600&q=80" }
+          ]
+        },
+        {
+          name: "أزياء النخيل — البصرة",
+          ownerName: "نور البصري",
+          category: "أزياء وملابس",
+          city: "البصرة",
+          address: "البصرة - الجزائر",
+          description: "تشكيلة مختارة من الأزياء النسائية الراقية والعباءات الخليجية بأقمشة فاخرة وخياطة متقنة.",
+          instagram: "https://www.instagram.com/palmsfashion.iq/",
+          tiktok: "https://www.tiktok.com/@palmsfashion.iq",
+          phone: "07801112233",
+          whatsapp: "9647801112233",
+          logo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+          cover: "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80",
+          status: "published",
+          featured: true,
+          products: [
+            { name: "عباءة كتان صيفية مطرزة", price: "85,000 د.ع", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=600&q=80" },
+            { name: "طقم رسمي بلون رملي", price: "95,000 د.ع", image: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=600&q=80" }
+          ]
+        },
+        {
+          name: "تيك زون أربيل",
+          ownerName: "كاروان محمد",
+          category: "إلكترونيات وإكسسوارات",
+          city: "أربيل",
+          address: "أربيل - شارع 100",
+          description: "أحدث الساعات الذكية والسماعات اللاسلكية وإكسسوارات الهواتف الأصلية بضمان حقيقي.",
+          instagram: "https://www.instagram.com/techzone.erbil/",
+          tiktok: "https://www.tiktok.com/@techzone.erbil",
+          phone: "07504445566",
+          whatsapp: "9647504445566",
+          logo: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=300&q=80",
+          cover: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1000&q=80",
+          status: "published",
+          featured: true,
+          products: [
+            { name: "سماعة لاسلكية عازلة للضوضاء", price: "110,000 د.ع", image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" },
+            { name: "ساعة ذكية رياضية", price: "145,000 د.ع", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" }
+          ]
+        }
+      ]
+    };
+
+    const appState = {
+      connectionStatus: "connecting",
+      adminToken: "",
+      adminUsername: "",
+      isSubmittingApplication: false,
+      stores: [],
+      categories: [],
+      banners: [],
+      applications: [],
+      siteSettings: { ...DEFAULT_SITE_SETTINGS },
+      activeStoreId: null
+    };
+
+    function setConnectionStatus(status, errorMessage = "") {
+      appState.connectionStatus = status;
+      const pill = document.getElementById("connectionStatusPill");
+      const text = document.getElementById("connectionStatusText");
+      const errPanel = document.getElementById("connectionErrorPanel");
+      const errMsgEl = document.getElementById("connectionErrorMessage");
+
+      pill.className = `conn-pill ${status}`;
+      if (status === "connected") {
+        text.textContent = "متصل بـ Google Sheets";
+        errPanel.classList.remove("show");
+      } else if (status === "connecting") {
+        text.textContent = "جاري الاتصال...";
+        errPanel.classList.remove("show");
+      } else {
+        text.textContent = "فشل الاتصال";
+        errMsgEl.textContent = errorMessage || "تعذر الوصول إلى خادم Google Apps Script.";
+        errPanel.classList.add("show");
+      }
+    }
+
+    function handleImgFallback(imgEl, type) {
+      if (!imgEl || imgEl.dataset.fallbackApplied === "true") return;
+      imgEl.dataset.fallbackApplied = "true";
+      imgEl.src = FALLBACK_IMAGES[type] || FALLBACK_IMAGES.cover;
+    }
+
+    function saveSessionToken(token, username) {
+      appState.adminToken = token || "";
+      appState.adminUsername = username || "";
+      try {
+        if (token) {
+          window.sessionStorage.setItem("bazar_admin_token", token);
+          window.sessionStorage.setItem("bazar_admin_user", username || "");
+        } else {
+          window.sessionStorage.removeItem("bazar_admin_token");
+          window.sessionStorage.removeItem("bazar_admin_user");
+        }
+      } catch (e) {}
+    }
+
+    function loadSavedSessionToken() {
+      try {
+        appState.adminToken = window.sessionStorage.getItem("bazar_admin_token") || "";
+        appState.adminUsername = window.sessionStorage.getItem("bazar_admin_user") || "";
+      } catch (e) {}
+    }
+
+    function isApiConfigured() {
+       const url = (BAZAR_CONFIG.APPS_SCRIPT_URL || "").trim();
+       try {
+          const parsed = new URL(url);
+          return (
+                    parsed.protocol === "https:" &&
+                    parsed.hostname === "script.google.com" &&
+                    /\/macros\/.*\/exec$/i.test(parsed.pathname)
+         );
+      } catch (e) {
+        return false;
+      }
+    }
+
+    async function callAppsScript(action, data = {}, timeoutMs = BAZAR_CONFIG.REQUEST_TIMEOUT_MS) {
+      // عند التشغيل داخل Apps Script Web App نستخدم google.script.run (لا يحتاج CORS ولا كوكيز)
+      if (typeof google !== "undefined" && google.script && google.script.run) {
+        return new Promise((resolve, reject) => {
+          const timer = setTimeout(() => {
+            reject(new Error("انتهت مهلة الاتصال بقاعدة بيانات Google Sheets. يرجى الضغط على إعادة المحاولة."));
+          }, timeoutMs);
+          google.script.run
+            .withSuccessHandler(res => {
+              clearTimeout(timer);
+              if (res && res.code === "UNAUTHORIZED") {
+                saveSessionToken("", "");
+                const adminView = document.getElementById("view-admin");
+                if (adminView && adminView.classList.contains("active")) {
+                  navigateTo("home");
+                }
+              }
+              resolve(res);
+            })
+            .withFailureHandler(err => {
+              clearTimeout(timer);
+              reject(new Error(err && err.message ? err.message : String(err)));
+            })
+            .apiCall(action, data, appState.adminToken || "");
+        });
+      }
+
+      // بديل: الاستدعاء عبر fetch (للتضمين في Google Sites)
+      if (!isApiConfigured()) {
+        throw new Error("لم يتم وضع رابط Google Apps Script Web App في إعدادات الواجهة (BAZAR_CONFIG.APPS_SCRIPT_URL).");
+      }
+
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+      try {
+        const response = await fetch(BAZAR_CONFIG.APPS_SCRIPT_URL.trim(), {
+          method: "POST",
+          redirect: "follow",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            action,
+            token: appState.adminToken || "",
+            data
+          }),
+          signal: controller.signal
+        });
+
+        clearTimeout(timer);
+
+        if (!response.ok) {
+          throw new Error(`خطأ HTTP (${response.status}) من خادم Google.`);
+        }
+
+        const rawText = await response.text();
+        let parsed;
+        try {
+          parsed = JSON.parse(rawText);
+        } catch (e) {
+          throw new Error("استجابة غير صالحة من الخادم. تأكد أن نشر Web App مضبوط على (Who has access: Anyone).");
+        }
+
+        if (parsed && parsed.code === "UNAUTHORIZED") {
+          saveSessionToken("", "");
+          if (document.getElementById("view-admin").classList.contains("active")) {
+            navigateTo("home");
+          }
+        }
+
+        return parsed;
+      } catch (err) {
+        clearTimeout(timer);
+        if (err.name === "AbortError") {
+          throw new Error("انتهت مهلة الاتصال بقاعدة بيانات Google Sheets. يرجى الضغط على إعادة المحاولة.");
+        }
+        throw err;
+      }
+    }
+
+    const imagePickerState = {};
+
+    function mountImagePicker(pickerId, options = {}) {
+      const container = document.getElementById(pickerId);
+      if (!container) return;
+
+      const folder = options.folder || "general";
+      const fallbackType = options.fallbackType || "cover";
+      const initialUrl = options.initialUrl || "";
+
+      imagePickerState[pickerId] = {
+        mode: "upload",
+        url: initialUrl,
+        pendingFile: null,
+        folder,
+        fallbackType
+      };
+
+      container.innerHTML = `
+        <div class="img-picker-box">
+          <div class="img-mode-tabs">
+            <button type="button" class="img-mode-btn active" data-mode="upload" onclick="switchPickerMode('${pickerId}', 'upload')">رفع إلى Google Drive</button>
+            <button type="button" class="img-mode-btn" data-mode="url" onclick="switchPickerMode('${pickerId}', 'url')">رابط صورة مباشر (URL)</button>
+          </div>
+          <div class="picker-upload-pane">
+            <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" class="input-control" style="padding:6px;" onchange="handlePickerFileSelect('${pickerId}', this)" />
+          </div>
+          <div class="picker-url-pane" style="display:none;">
+            <input type="url" class="input-control" placeholder="https://example.com/image.jpg" dir="ltr" value="${escapeAttr(initialUrl)}" oninput="handlePickerUrlInput('${pickerId}', this.value)" />
+          </div>
+          <div class="img-preview-row">
+            <img class="img-preview-thumb" src="${escapeAttr(initialUrl || FALLBACK_IMAGES[fallbackType])}" alt="معاينة الصورة" onerror="handleImgFallback(this, '${fallbackType}')" />
+            <div class="img-preview-meta">
+              <div class="picker-status-text">${initialUrl ? "صورة محددة وجاهزة" : "لم يتم اختيار صورة مخصصة"}</div>
+              <div style="margin-top:4px;">
+                <button type="button" class="btn btn-outline btn-sm" style="padding:2px 9px;font-size:0.72rem;" onclick="clearPickerImage('${pickerId}')">إزالة</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function switchPickerMode(pickerId, mode) {
+      const state = imagePickerState[pickerId];
+      const container = document.getElementById(pickerId);
+      if (!state || !container) return;
+      state.mode = mode;
+      container.querySelectorAll(".img-mode-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.mode === mode);
+      });
+      container.querySelector(".picker-upload-pane").style.display = mode === "upload" ? "block" : "none";
+      container.querySelector(".picker-url-pane").style.display = mode === "url" ? "block" : "none";
+    }
+
+    function handlePickerFileSelect(pickerId, fileInput) {
+      const state = imagePickerState[pickerId];
+      const container = document.getElementById(pickerId);
+      if (!state || !container || !fileInput.files || !fileInput.files[0]) return;
+
+      const file = fileInput.files[0];
+      const statusEl = container.querySelector(".picker-status-text");
+      const thumbEl = container.querySelector(".img-preview-thumb");
+
+      if (!file.type.startsWith("image/")) {
+        statusEl.textContent = "يرجى اختيار ملف صورة صالح (JPG, PNG, WebP).";
+        statusEl.style.color = "var(--danger)";
+        fileInput.value = "";
+        return;
+      }
+
+      if (file.size > 4 * 1024 * 1024) {
+        statusEl.textContent = "حجم الصورة يتجاوز 4 ميجابايت المسموحة.";
+        statusEl.style.color = "var(--danger)";
+        fileInput.value = "";
+        return;
+      }
+
+      state.pendingFile = file;
+      thumbEl.dataset.fallbackApplied = "false";
+      thumbEl.src = URL.createObjectURL(file);
+      statusEl.style.color = "var(--success)";
+      statusEl.textContent = `جاهز للرفع إلى Drive: ${file.name} (${Math.round(file.size / 1024)} KB)`;
+    }
+
+    function handlePickerUrlInput(pickerId, val) {
+      const state = imagePickerState[pickerId];
+      const container = document.getElementById(pickerId);
+      if (!state || !container) return;
+
+      const trimmed = val.trim();
+      state.pendingFile = null;
+      state.url = trimmed;
+
+      const statusEl = container.querySelector(".picker-status-text");
+      const thumbEl = container.querySelector(".img-preview-thumb");
+
+      if (!trimmed) {
+        thumbEl.src = FALLBACK_IMAGES[state.fallbackType];
+        statusEl.style.color = "var(--ink-muted)";
+        statusEl.textContent = "لم يتم إدخال رابط";
+        return;
+      }
+
+      if (!/^https?:\/\/.+/i.test(trimmed)) {
+        statusEl.style.color = "var(--danger)";
+        statusEl.textContent = "يجب أن يبدأ الرابط بـ https://";
+        return;
+      }
+
+      thumbEl.dataset.fallbackApplied = "false";
+      thumbEl.src = trimmed;
+      statusEl.style.color = "var(--success)";
+      statusEl.textContent = "تمت معاينة الرابط المباشر";
+    }
+
+    function clearPickerImage(pickerId) {
+      const state = imagePickerState[pickerId];
+      const container = document.getElementById(pickerId);
+      if (!state || !container) return;
+      state.pendingFile = null;
+      state.url = "";
+      const fileInput = container.querySelector("input[type='file']");
+      const urlInput = container.querySelector("input[type='url']");
+      if (fileInput) fileInput.value = "";
+      if (urlInput) urlInput.value = "";
+      const thumbEl = container.querySelector(".img-preview-thumb");
+      const statusEl = container.querySelector(".picker-status-text");
+      thumbEl.src = FALLBACK_IMAGES[state.fallbackType];
+      statusEl.style.color = "var(--ink-muted)";
+      statusEl.textContent = "تمت إزالة الصورة";
+    }
+
+    function setPickerValue(pickerId, url) {
+      const state = imagePickerState[pickerId];
+      const container = document.getElementById(pickerId);
+      if (!state || !container) return;
+      state.pendingFile = null;
+      state.url = url || "";
+      const fileInput = container.querySelector("input[type='file']");
+      const urlInput = container.querySelector("input[type='url']");
+      if (fileInput) fileInput.value = "";
+      if (urlInput) urlInput.value = url || "";
+      const thumbEl = container.querySelector(".img-preview-thumb");
+      const statusEl = container.querySelector(".picker-status-text");
+      thumbEl.dataset.fallbackApplied = "false";
+      thumbEl.src = url || FALLBACK_IMAGES[state.fallbackType];
+      statusEl.style.color = "var(--ink-muted)";
+      statusEl.textContent = url ? "صورة محفوظة" : "لم يتم اختيار صورة مخصصة";
+    }
+
+    function fileToBase64_(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = String(reader.result || "");
+          const commaIdx = result.indexOf(",");
+          resolve(commaIdx > -1 ? result.slice(commaIdx + 1) : result);
+        };
+        reader.onerror = () => reject(new Error("فشل قراءة ملف الصورة من الجهاز."));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function resolvePickerToDriveUrl(pickerId, fallbackUrl = "") {
+      const state = imagePickerState[pickerId];
+      if (!state) return fallbackUrl;
+
+      if (state.pendingFile) {
+        const base64Data = await fileToBase64_(state.pendingFile);
+        const uploadRes = await callAppsScript("uploadImage", {
+          base64Data,
+          mimeType: state.pendingFile.type,
+          fileName: state.pendingFile.name,
+          folder: state.folder
+        }, 45000);
+
+        if (!uploadRes || !uploadRes.ok || !uploadRes.url) {
+          throw new Error((uploadRes && uploadRes.error) || "فشل رفع الصورة إلى Google Drive.");
+        }
+        state.url = uploadRes.url;
+        state.pendingFile = null;
+        return uploadRes.url;
+      }
+
+      return state.url || fallbackUrl;
+    }
+
+    function initStaticPickers() {
+      mountImagePicker("picker-catImage", { folder: "categories", fallbackType: "category" });
+      mountImagePicker("picker-bannerImage", { folder: "banners", fallbackType: "cover" });
+      mountImagePicker("picker-setHeroImg", { folder: "site", fallbackType: "cover", initialUrl: appState.siteSettings.heroImg });
+      mountImagePicker("picker-setPromoImg", { folder: "site", fallbackType: "cover", initialUrl: appState.siteSettings.promoImg });
+      mountImagePicker("picker-setAboutImg", { folder: "site", fallbackType: "cover", initialUrl: appState.siteSettings.aboutImg });
+      mountImagePicker("picker-setJoinImg", { folder: "site", fallbackType: "cover", initialUrl: appState.siteSettings.joinImg });
+      mountImagePicker("picker-edLogo", { folder: "logos", fallbackType: "logo" });
+      mountImagePicker("picker-edCover", { folder: "covers", fallbackType: "cover" });
+    }
+
+    async function loadPublicBootstrapData() {
+      setConnectionStatus("connecting");
+
+      try {
+        const res = await callAppsScript("getPublicData");
+        if (!res || !res.ok) {
+          throw new Error((res && res.error) || "تعذر قراءة البيانات من Google Sheets.");
+        }
+
+        appState.stores = Array.isArray(res.stores) ? res.stores : [];
+        appState.categories = Array.isArray(res.categories) ? res.categories : [];
+        appState.banners = Array.isArray(res.banners) ? res.banners : [];
+        appState.siteSettings = { ...DEFAULT_SITE_SETTINGS, ...(res.siteSettings || {}) };
+
+        setConnectionStatus("connected");
+        refreshAllPublicUI();
+      } catch (err) {
+        console.error("Google Sheets connection failed:", err);
+        appState.stores = [];
+        appState.categories = [];
+        appState.banners = [];
+        setConnectionStatus("failed", err.message);
+        refreshAllPublicUI();
+      }
+    }
+
+    function refreshAllPublicUI() {
+      populateDropdowns();
+      applySiteMediaAndTexts();
+      renderDynamicBanners();
+      renderCategoriesViews();
+      renderHomeFeaturedStores();
+      renderStoresDirectory();
+    }
+
+    function populateDropdowns() {
+      const catOptions = appState.categories.map(c => `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join("");
+      const cityOptions = IRAQI_CITIES.map(city => `<option value="${escapeHtml(city)}">${escapeHtml(city)}</option>`).join("");
+
+      document.getElementById("filterCategorySelect").innerHTML = `<option value="">كل التصنيفات</option>` + catOptions;
+      document.getElementById("filterCitySelect").innerHTML = `<option value="">كل المحافظات العراقية</option>` + cityOptions;
+      document.getElementById("appCategory").innerHTML = `<option value="">اختر التصنيف...</option>` + catOptions;
+      document.getElementById("appCity").innerHTML = `<option value="">اختر المحافظة...</option>` + cityOptions;
+      document.getElementById("edCategory").innerHTML = catOptions || `<option value="عام">عام</option>`;
+      document.getElementById("edCity").innerHTML = cityOptions;
+    }
+
+    function applySiteMediaAndTexts() {
+      const s = appState.siteSettings;
+      document.getElementById("heroTitleText").textContent = s.heroTitle || DEFAULT_SITE_SETTINGS.heroTitle;
+      document.getElementById("heroSubtitleText").textContent = s.heroSubtitle || DEFAULT_SITE_SETTINGS.heroSubtitle;
+      document.getElementById("heroBannerImg").src = s.heroImg || DEFAULT_SITE_SETTINGS.heroImg;
+      document.getElementById("homePromoImg").src = s.promoImg || DEFAULT_SITE_SETTINGS.promoImg;
+      document.getElementById("aboutBannerImg").src = s.aboutImg || DEFAULT_SITE_SETTINGS.aboutImg;
+      document.getElementById("joinBannerImg").src = s.joinImg || DEFAULT_SITE_SETTINGS.joinImg;
+
+      document.getElementById("setHeroTitle").value = s.heroTitle || DEFAULT_SITE_SETTINGS.heroTitle;
+      document.getElementById("setHeroSubtitle").value = s.heroSubtitle || DEFAULT_SITE_SETTINGS.heroSubtitle;
+      setPickerValue("picker-setHeroImg", s.heroImg || DEFAULT_SITE_SETTINGS.heroImg);
+      setPickerValue("picker-setPromoImg", s.promoImg || DEFAULT_SITE_SETTINGS.promoImg);
+      setPickerValue("picker-setAboutImg", s.aboutImg || DEFAULT_SITE_SETTINGS.aboutImg);
+      setPickerValue("picker-setJoinImg", s.joinImg || DEFAULT_SITE_SETTINGS.joinImg);
+    }
+
+    function renderDynamicBanners() {
+      const container = document.getElementById("homeDynamicBanners");
+      if (!appState.banners.length) {
+        container.innerHTML = "";
+        return;
+      }
+      container.innerHTML = appState.banners.map(b => `
+        <div class="dynamic-banner-card">
+          <img src="${escapeAttr(b.image)}" alt="${escapeAttr(b.title)}" loading="lazy" onerror="handleImgFallback(this, 'cover')" />
+          <div class="dynamic-banner-content">
+            <h3 style="font-size:1.15rem;margin-bottom:4px;">${escapeHtml(b.title)}</h3>
+            ${b.subtitle ? `<p style="font-size:0.86rem;color:#EFECE6;margin-bottom:10px;">${escapeHtml(b.subtitle)}</p>` : ""}
+            ${b.linkUrl ? `<a href="${escapeAttr(b.linkUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm">${escapeHtml(b.buttonText || "استكشف الآن")}</a>` : ""}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderCategoriesViews() {
+      const buildCard = (cat) => {
+        const count = appState.stores.filter(st => st.category === cat.name).length;
+        return `
+          <article class="cat-card" onclick="openCategoryStores('${escapeAttr(cat.name)}')">
+            <div class="cat-thumb">
+              <img src="${escapeAttr(cat.image || FALLBACK_IMAGES.category)}" alt="${escapeAttr(cat.name)}" loading="lazy" onerror="handleImgFallback(this, 'category')" />
+            </div>
+            <div class="cat-body">
+              <div>
+                <h3>${escapeHtml(cat.name)}</h3>
+                <p>${escapeHtml(cat.description || "")}</p>
+              </div>
+              <span class="cat-count">${count} متجر متاح ←</span>
+            </div>
+          </article>
+        `;
+      };
+
+      if (!appState.categories.length) {
+        const emptyHtml = `
+          <div class="empty-state-box">
+            <h3>${appState.connectionStatus === "failed" ? "تعذر تحميل التصنيفات" : "لا توجد تصنيفات مضافة في Google Sheets بعد"}</h3>
+            <p>${appState.connectionStatus === "failed" ? "يرجى التأكد من اتصال قاعدة البيانات والمحاولة مرة أخرى." : "يمكن للمدير إضافة التصنيفات من لوحة التحكم."}</p>
+          </div>`;
+        document.getElementById("homeCategoriesGrid").innerHTML = emptyHtml;
+        document.getElementById("allCategoriesGrid").innerHTML = emptyHtml;
+        return;
+      }
+
+      document.getElementById("homeCategoriesGrid").innerHTML = appState.categories.slice(0, 6).map(buildCard).join("");
+      document.getElementById("allCategoriesGrid").innerHTML = appState.categories.map(buildCard).join("");
+    }
+
+    function buildStoreCardHtml(store) {
+      const igBtn = store.instagram
+        ? `<a href="${escapeAttr(store.instagram)}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" onclick="event.stopPropagation()">إنستغرام</a>`
+        : "";
+      const ttBtn = store.tiktok
+        ? `<a href="${escapeAttr(store.tiktok)}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" onclick="event.stopPropagation()">تيك توك</a>`
+        : "";
+      const waClean = (store.whatsapp || "").replace(/\D/g, "");
+      const waBtn = waClean
+        ? `<a href="https://wa.me/${escapeAttr(waClean)}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" onclick="event.stopPropagation()">واتساب</a>`
+        : "";
+
+      return `
+        <article class="store-card">
+          <div class="store-cover" onclick="navigateTo('store-detail', '${escapeAttr(store.id)}')">
+            <img src="${escapeAttr(store.cover || FALLBACK_IMAGES.cover)}" alt="${escapeAttr(store.name)}" loading="lazy" onerror="handleImgFallback(this, 'cover')" />
+            <div class="store-badges">
+              <span class="badge">${escapeHtml(store.category)}</span>
+              ${store.featured ? `<span class="badge badge-gold">مميز</span>` : ""}
+            </div>
+          </div>
+          <div class="store-card-body">
+            <div class="store-logo-wrap">
+              <img src="${escapeAttr(store.logo || FALLBACK_IMAGES.logo)}" alt="شعار ${escapeAttr(store.name)}" loading="lazy" onerror="handleImgFallback(this, 'logo')" />
+            </div>
+            <div class="store-title-row">
+              <h3 onclick="navigateTo('store-detail', '${escapeAttr(store.id)}')">${escapeHtml(store.name)}</h3>
+            </div>
+            <div class="store-meta">
+              <span>&#128205; ${escapeHtml(store.city)}</span>
+              <span>• ${(store.products || []).length} منتجات</span>
+            </div>
+            <p class="store-desc">${escapeHtml(store.description)}</p>
+            <div class="store-footer">
+              <div class="social-pills">
+                ${igBtn}
+                ${ttBtn}
+                ${waBtn}
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="navigateTo('store-detail', '${escapeAttr(store.id)}')">عرض المتجر</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderHomeFeaturedStores() {
+      document.getElementById("statStoreCount").textContent = appState.stores.length;
+      document.getElementById("statCatCount").textContent = appState.categories.length;
+
+      const featured = appState.stores.filter(s => s.featured);
+      const list = featured.length ? featured : appState.stores.slice(0, 6);
+
+      document.getElementById("homeFeaturedStoresGrid").innerHTML = list.length
+        ? list.map(buildStoreCardHtml).join("")
+        : `<div class="empty-state-box">
+            <h3>${appState.connectionStatus === "failed" ? "لا يمكن عرض المتاجر بسبب انقطاع الاتصال" : "لا توجد متاجر منشورة في قاعدة البيانات حالياً"}</h3>
+            <p>${appState.connectionStatus === "failed" ? "اضغط على إعادة المحاولة في الأعلى للاتصال بـ Google Sheets." : "يمكن لأصحاب المتاجر التقديم للانضمام، أو للمدير إضافة المتاجر من لوحة الإدارة."}</p>
+            <button class="btn btn-gold btn-sm" onclick="navigateTo('join')">+ أضف متجرك الآن</button>
+          </div>`;
+    }
+
+    function renderStoresDirectory() {
+      const q = (document.getElementById("filterSearchInput").value || "").trim().toLowerCase();
+      const cat = document.getElementById("filterCategorySelect").value;
+      const city = document.getElementById("filterCitySelect").value;
+      const platform = document.getElementById("filterPlatformSelect").value;
+
+      const filtered = appState.stores.filter(store => {
+        if (cat && store.category !== cat) return false;
+        if (city && store.city !== city) return false;
+        if (platform === "instagram" && !store.instagram) return false;
+        if (platform === "tiktok" && !store.tiktok) return false;
+        if (platform === "both" && (!store.instagram || !store.tiktok)) return false;
+        if (q) {
+          const haystack = [
+            store.name, store.description, store.category, store.city, store.address,
+            ...(store.products || []).map(p => p.name)
+          ].join(" ").toLowerCase();
+          if (!haystack.includes(q)) return false;
+        }
+        return true;
+      });
+
+      document.getElementById("storesPageHeading").textContent = cat ? `متاجر تصنيف: ${cat}` : "جميع المتاجر العراقية";
+      document.getElementById("storesResultCount").textContent = `عرض ${filtered.length} متجر`;
+      document.getElementById("directoryStoresGrid").innerHTML = filtered.length
+        ? filtered.map(buildStoreCardHtml).join("")
+        : `<div class="empty-state-box">
+            <h3>لا توجد متاجر مطابقة</h3>
+            <p>جرّب تعديل الفلاتر أو عرض جميع المتاجر المتوفرة في الدليل.</p>
+            <button class="btn btn-outline btn-sm" onclick="resetStoreFilters()">إعادة ضبط الفلاتر</button>
+          </div>`;
+    }
+
+    function resetStoreFilters() {
+      document.getElementById("filterSearchInput").value = "";
+      document.getElementById("filterCategorySelect").value = "";
+      document.getElementById("filterCitySelect").value = "";
+      document.getElementById("filterPlatformSelect").value = "";
+      renderStoresDirectory();
+    }
+
+    function openCategoryStores(categoryName) {
+      navigateTo("stores");
+      document.getElementById("filterCategorySelect").value = categoryName;
+      renderStoresDirectory();
+    }
+
+    function triggerHomeSearch() {
+      const q = document.getElementById("homeSearchInput").value.trim();
+      navigateTo("stores");
+      document.getElementById("filterSearchInput").value = q;
+      renderStoresDirectory();
+    }
+
+    function renderStoreDetailPage(storeId) {
+      const store = appState.stores.find(s => s.id === storeId);
+      const container = document.getElementById("storeDetailContainer");
+
+      if (!store) {
+        container.innerHTML = `
+          <div class="empty-state-box">
+            <h3>المتجر غير موجود</h3>
+            <button class="btn btn-primary btn-sm" onclick="navigateTo('stores')">العودة إلى الدليل</button>
+          </div>`;
+        return;
+      }
+
+      const igButton = store.instagram
+        ? `<a href="${escapeAttr(store.instagram)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">إنستغرام ↗</a>`
+        : "";
+      const ttButton = store.tiktok
+        ? `<a href="${escapeAttr(store.tiktok)}" target="_blank" rel="noopener noreferrer" class="btn btn-gold">تيك توك ↗</a>`
+        : "";
+      const waClean = (store.whatsapp || "").replace(/\D/g, "");
+      const waButton = waClean
+        ? `<a href="https://wa.me/${escapeAttr(waClean)}" target="_blank" rel="noopener noreferrer" class="btn btn-success">واتساب ↗</a>`
+        : "";
+      const phoneButton = store.phone
+        ? `<a href="tel:${escapeAttr(store.phone.replace(/\s+/g, ''))}" class="btn btn-outline">اتصال: ${escapeHtml(store.phone)}</a>`
+        : "";
+
+      const primaryContactLink = waClean
+        ? `https://wa.me/${waClean}`
+        : (store.instagram || store.tiktok || "#");
+
+      const productsHtml = (store.products && store.products.length)
+        ? store.products.map(prod => `
+            <article class="product-card">
+              <img src="${escapeAttr(prod.image || FALLBACK_IMAGES.product)}" alt="${escapeAttr(prod.name)}" loading="lazy" onerror="handleImgFallback(this, 'product')" />
+              <div class="product-body">
+                <div>
+                  <h4 style="font-size:0.98rem;margin-bottom:4px;">${escapeHtml(prod.name)}</h4>
+                  ${prod.price ? `<div class="product-price">${escapeHtml(prod.price)}</div>` : ""}
+                </div>
+                ${primaryContactLink !== "#" ? `
+                  <a href="${escapeAttr(primaryContactLink)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width:100%;">
+                    اطلب من المتجر ↗
+                  </a>` : ""}
+              </div>
+            </article>
+          `).join("")
+        : `<p style="color:var(--ink-muted);">لم يقم المتجر بإضافة منتجات بعد. يمكنك تصفح حساباته الرسمية أعلاه.</p>`;
+
+      container.innerHTML = `
+        <div style="margin-bottom:14px;">
+          <button class="btn btn-outline btn-sm" onclick="navigateTo('stores')">→ العودة إلى جميع المتاجر</button>
+        </div>
+
+        <div class="detail-cover">
+          <img src="${escapeAttr(store.cover || FALLBACK_IMAGES.cover)}" alt="غلاف ${escapeAttr(store.name)}" onerror="handleImgFallback(this, 'cover')" />
+        </div>
+
+        <div class="detail-header-card">
+          <div class="detail-identity">
+            <div class="detail-logo">
+              <img src="${escapeAttr(store.logo || FALLBACK_IMAGES.logo)}" alt="شعار ${escapeAttr(store.name)}" onerror="handleImgFallback(this, 'logo')" />
+            </div>
+            <div>
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:4px;">
+                <span class="eyebrow" style="margin:0;">${escapeHtml(store.category)}</span>
+                <span style="font-size:0.84rem;color:var(--ink-muted);">&#128205; ${escapeHtml(store.city)} ${store.address ? "• " + escapeHtml(store.address) : ""}</span>
+              </div>
+              <h1 style="font-size:1.65rem;font-weight:800;">${escapeHtml(store.name)}</h1>
+              <p style="color:var(--ink-muted);max-width:640px;margin-top:6px;">${escapeHtml(store.description)}</p>
+            </div>
+          </div>
+
+          <div class="detail-actions">
+            ${igButton}
+            ${ttButton}
+            ${waButton}
+            ${phoneButton}
+          </div>
+        </div>
+
+        <div style="margin-top:28px;">
+          <h3 style="font-size:1.3rem;font-weight:800;margin-bottom:4px;">معرض منتجات المتجر</h3>
+          <p style="color:var(--ink-muted);font-size:0.88rem;">تصفح المنتجات وتواصل مباشرة مع البائع</p>
+          <div class="products-grid">${productsHtml}</div>
+        </div>
+      `;
+    }
+
+    async function handleStoreApplicationSubmit(event) {
+      event.preventDefault();
+      if (appState.isSubmittingApplication) return;
+
+      const alertEl = document.getElementById("joinFormAlert");
+      const btn = document.getElementById("appSubmitBtn");
+
+      const showAlert = (type, msg) => {
+        alertEl.className = `alert-box show alert-${type}`;
+        alertEl.textContent = msg;
+      };
+
+      const payload = {
+        storeName: document.getElementById("appStoreName").value.trim(),
+        ownerName: document.getElementById("appOwnerName").value.trim(),
+        category: document.getElementById("appCategory").value.trim(),
+        city: document.getElementById("appCity").value.trim(),
+        instagram: document.getElementById("appInstagram").value.trim(),
+        tiktok: document.getElementById("appTiktok").value.trim(),
+        phone: document.getElementById("appPhone").value.trim(),
+        whatsapp: document.getElementById("appWhatsapp").value.trim(),
+        address: document.getElementById("appAddress").value.trim(),
+        logo: document.getElementById("appLogoUrl").value.trim(),
+        cover: document.getElementById("appCoverUrl").value.trim(),
+        description: document.getElementById("appDescription").value.trim()
+      };
+
+      if (!payload.storeName || !payload.ownerName || !payload.category || !payload.city || !payload.description) {
+        showAlert("danger", "يرجى ملء جميع الحقول المطلوبة (*).");
+        return;
+      }
+      if (!payload.instagram && !payload.tiktok) {
+        showAlert("danger", "يرجى إدخال حساب إنستغرام أو تيك توك واحد على الأقل.");
+        return;
+      }
+
+      appState.isSubmittingApplication = true;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner"></span> جاري إرسال الطلب إلى Google Sheets...`;
+
+      try {
+        const res = await callAppsScript("submitApplication", payload);
+        if (!res || !res.ok) {
+          throw new Error((res && res.error) || "فشل إرسال الطلب.");
+        }
+        document.getElementById("storeApplicationForm").reset();
+        showAlert("success", `تم إرسال طلب انضمام متجر "${payload.storeName}" إلى Google Sheets بنجاح!`);
+      } catch (err) {
+        showAlert("danger", "تعذر إرسال الطلب: " + err.message);
+      } finally {
+        appState.isSubmittingApplication = false;
+        btn.disabled = false;
+        btn.textContent = "إرسال طلب انضمام المتجر";
+      }
+    }
+
+    async function openAdminGate() {
+      if (appState.adminToken) {
+        setConnectionStatus("connecting");
+        try {
+          const check = await callAppsScript("verifySession");
+          if (check && check.ok && check.authenticated) {
+            setConnectionStatus("connected");
+            await refreshAdminDataFromServer();
+            navigateTo("admin");
+            return;
+          }
+        } catch (e) {}
+        saveSessionToken("", "");
+        setConnectionStatus("connected");
+      }
+
+      document.getElementById("adminLoginAlert").className = "alert-box";
+      document.getElementById("adminLoginModal").classList.add("open");
+    }
+
+    async function handleAdminLogin(event) {
+      event.preventDefault();
+      const username = document.getElementById("adminUserInput").value.trim();
+      const password = document.getElementById("adminPasswordInput").value;
+      const alertEl = document.getElementById("adminLoginAlert");
+      const btn = document.getElementById("adminLoginSubmitBtn");
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner"></span> جاري التحقق...`;
+
+      try {
+        const res = await callAppsScript("adminLogin", { username, password });
+        if (!res || !res.ok || !res.token) {
+          throw new Error((res && res.error) || "بيانات الدخول غير صحيحة.");
+        }
+
+        saveSessionToken(res.token, res.username);
+        document.getElementById("adminPasswordInput").value = "";
+        closeModal("adminLoginModal");
+        await refreshAdminDataFromServer();
+        navigateTo("admin");
+      } catch (err) {
+        alertEl.className = "alert-box show alert-danger";
+        alertEl.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "دخول إلى لوحة التحكم";
+      }
+    }
+
+    async function adminLogout() {
+      try {
+        if (appState.adminToken) {
+          await callAppsScript("adminLogout");
+        }
+      } catch (e) {}
+      saveSessionToken("", "");
+      navigateTo("home");
+    }
+
+    async function refreshAdminDataFromServer() {
+      if (!appState.adminToken) return;
+      setConnectionStatus("connecting");
+      try {
+        const res = await callAppsScript("getAdminDashboardData");
+        if (!res || !res.ok) {
+          throw new Error((res && res.error) || "تعذر تحميل بيانات الإدارة.");
+        }
+
+        appState.stores = res.stores || [];
+        appState.categories = res.categories || [];
+        appState.banners = res.banners || [];
+        appState.applications = res.applications || [];
+        appState.siteSettings = { ...DEFAULT_SITE_SETTINGS, ...(res.siteSettings || {}) };
+
+        setConnectionStatus("connected");
+        populateDropdowns();
+        applySiteMediaAndTexts();
+        renderAdminDashboard();
+      } catch (err) {
+        setConnectionStatus("failed", err.message);
+        showAdminGlobalAlert("danger", err.message);
+      }
+    }
+
+    function renderAdminDashboard() {
+      const publishedStores = appState.stores.filter(s => s.status === "published");
+      const pendingApps = appState.applications.filter(a => a.status === "pending");
+      const totalProducts = appState.stores.reduce((acc, s) => acc + (s.products ? s.products.length : 0), 0);
+      const activeBanners = appState.banners.filter(b => b.active);
+
+      document.getElementById("kpiPublished").textContent = publishedStores.length;
+      document.getElementById("kpiPending").textContent = pendingApps.length;
+      document.getElementById("kpiCategories").textContent = appState.categories.length;
+      document.getElementById("kpiProducts").textContent = totalProducts;
+      document.getElementById("kpiBanners").textContent = activeBanners.length;
+      document.getElementById("tabPendingBadge").textContent = pendingApps.length;
+
+      renderAdminApplicationsTable();
+      renderAdminStoresTable();
+      renderAdminCategoriesTable();
+      renderAdminBannersTable();
+    }
+
+    function renderAdminApplicationsTable() {
+      const tbody = document.getElementById("adminApplicationsTbody");
+      if (!appState.applications.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--ink-muted);padding:20px;">لا توجد طلبات انضمام مسجلة في Google Sheets.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = appState.applications.map(app => {
+        const statusMap = {
+          pending: `<span class="status-pill status-pending">قيد المراجعة</span>`,
+          approved: `<span class="status-pill status-approved">مقبول</span>`,
+          rejected: `<span class="status-pill status-rejected">مرفوض</span>`
+        };
+        const dateStr = app.createdAt ? new Date(app.createdAt).toLocaleDateString("ar-IQ") : "—";
+        return `
+          <tr>
+            <td><strong>${escapeHtml(app.storeName)}</strong><br/><small style="color:var(--ink-muted);">المالك: ${escapeHtml(app.ownerName)}</small></td>
+            <td>${escapeHtml(app.category)}<br/><small>${escapeHtml(app.city)}</small></td>
+            <td>
+              ${app.instagram ? `<a href="${escapeAttr(app.instagram)}" target="_blank" rel="noopener noreferrer" class="social-icon-btn">IG</a>` : ""}
+              ${app.tiktok ? `<a href="${escapeAttr(app.tiktok)}" target="_blank" rel="noopener noreferrer" class="social-icon-btn">TT</a>` : ""}
+              ${app.phone ? `<div><small>${escapeHtml(app.phone)}</small></div>` : ""}
+            </td>
+            <td>${dateStr}</td>
+            <td>${statusMap[app.status] || statusMap.pending}</td>
+            <td>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <button class="btn btn-outline btn-sm" onclick="inspectApplication('${escapeAttr(app.id)}')">معاينة</button>
+                ${app.status !== "approved" ? `<button class="btn btn-success btn-sm" onclick="approveApplication('${escapeAttr(app.id)}')">قبول ونشر</button>` : ""}
+                ${app.status === "pending" ? `<button class="btn btn-danger btn-sm" onclick="rejectApplication('${escapeAttr(app.id)}')">رفض</button>` : ""}
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function inspectApplication(appId) {
+      const app = appState.applications.find(a => String(a.id) === String(appId));
+      if (!app) return;
+      document.getElementById("appInspectBody").innerHTML = `
+        <p style="margin-bottom:8px;"><strong>اسم المتجر:</strong> ${escapeHtml(app.storeName)}</p>
+        <p style="margin-bottom:8px;"><strong>المالك:</strong> ${escapeHtml(app.ownerName)}</p>
+        <p style="margin-bottom:8px;"><strong>التصنيف والمحافظة:</strong> ${escapeHtml(app.category)} — ${escapeHtml(app.city)}</p>
+        <p style="margin-bottom:8px;"><strong>الوصف:</strong> ${escapeHtml(app.description)}</p>
+        <p style="margin-bottom:8px;"><strong>إنستغرام:</strong> ${escapeHtml(app.instagram || "—")}</p>
+        <p style="margin-bottom:8px;"><strong>تيك توك:</strong> ${escapeHtml(app.tiktok || "—")}</p>
+        <p style="margin-bottom:14px;"><strong>الهاتف / واتساب:</strong> ${escapeHtml(app.phone || "—")} / ${escapeHtml(app.whatsapp || "—")}</p>
+        <div style="display:flex;gap:8px;justify-content:flex-end;">
+          <button class="btn btn-success btn-sm" onclick="approveApplication('${escapeAttr(app.id)}');closeModal('appInspectModal')">قبول ونشر</button>
+          <button class="btn btn-outline btn-sm" onclick="closeModal('appInspectModal')">إغلاق</button>
+        </div>
+      `;
+      document.getElementById("appInspectModal").classList.add("open");
+    }
+
+    async function approveApplication(appId) {
+      try {
+        const res = await callAppsScript("approveApplication", { id: appId });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل قبول الطلب.");
+        showAdminGlobalAlert("success", "تم قبول المتجر ونشره في Google Sheets بنجاح.");
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        showAdminGlobalAlert("danger", err.message);
+      }
+    }
+
+    async function rejectApplication(appId) {
+      if (!confirm("هل أنت متأكد من رفض طلب الانضمام هذا؟")) return;
+      try {
+        const res = await callAppsScript("rejectApplication", { id: appId });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل رفض الطلب.");
+        showAdminGlobalAlert("warning", "تم رفض الطلب.");
+        await refreshAdminDataFromServer();
+      } catch (err) {
+        showAdminGlobalAlert("danger", err.message);
+      }
+    }
+
+    function renderAdminStoresTable() {
+      const q = (document.getElementById("adminStoreSearch").value || "").trim().toLowerCase();
+      const tbody = document.getElementById("adminStoresTbody");
+      const list = appState.stores.filter(s => !q || s.name.toLowerCase().includes(q) || s.city.toLowerCase().includes(q));
+
+      if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--ink-muted);padding:20px;">لا توجد متاجر مسجلة.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(store => `
+        <tr>
+          <td>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <img src="${escapeAttr(store.logo || FALLBACK_IMAGES.logo)}" style="width:38px;height:38px;border-radius:10px;object-fit:cover;" onerror="handleImgFallback(this,'logo')" />
+              <div>
+                <strong>${escapeHtml(store.name)}</strong><br/>
+                <small style="color:var(--gold-dark);">${store.featured ? "★ مميز" : ""}</small>
+              </div>
+            </div>
+          </td>
+          <td>${escapeHtml(store.category)}<br/><small>${escapeHtml(store.city)}</small></td>
+          <td>
+            ${store.instagram ? `<a href="${escapeAttr(store.instagram)}" target="_blank" rel="noopener noreferrer" class="social-icon-btn">IG</a>` : ""}
+            ${store.tiktok ? `<a href="${escapeAttr(store.tiktok)}" target="_blank" rel="noopener noreferrer" class="social-icon-btn">TT</a>` : ""}
+          </td>
+          <td>${(store.products || []).length}</td>
+          <td>
+            <span class="status-pill ${store.status === "published" ? "status-approved" : "status-pending"}">
+              ${store.status === "published" ? "منشور" : "مخفي"}
+            </span>
+          </td>
+          <td>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button class="btn btn-outline btn-sm" onclick="openStoreEditorModal('${escapeAttr(store.id)}')">تعديل</button>
+              <button class="btn btn-outline btn-sm" onclick="toggleStorePublish('${escapeAttr(store.id)}')">${store.status === "published" ? "إخفاء" : "نشر"}</button>
+              <button class="btn btn-danger btn-sm" onclick="deleteStore('${escapeAttr(store.id)}')">حذف</button>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    let productRowCounter = 0;
+
+    function openStoreEditorModal(storeId) {
+      const store = storeId ? appState.stores.find(s => String(s.id) === String(storeId)) : null;
+      document.getElementById("storeModalAlert").className = "alert-box";
+      document.getElementById("storeModalTitle").textContent = store ? `تعديل متجر: ${store.name}` : "إضافة متجر جديد";
+      document.getElementById("editStoreId").value = store ? store.id : "";
+      document.getElementById("edStoreName").value = store ? store.name : "";
+      document.getElementById("edOwnerName").value = store ? (store.ownerName || "") : "";
+      document.getElementById("edCategory").value = store ? store.category : (appState.categories[0]?.name || "");
+      document.getElementById("edCity").value = store ? store.city : IRAQI_CITIES[0];
+      document.getElementById("edInstagram").value = store ? (store.instagram || "") : "";
+      document.getElementById("edTiktok").value = store ? (store.tiktok || "") : "";
+      document.getElementById("edPhone").value = store ? (store.phone || "") : "";
+      document.getElementById("edWhatsapp").value = store ? (store.whatsapp || "") : "";
+      document.getElementById("edAddress").value = store ? (store.address || "") : "";
+      document.getElementById("edDescription").value = store ? (store.description || "") : "";
+      document.getElementById("edPublished").checked = store ? (store.status === "published") : true;
+      document.getElementById("edFeatured").checked = store ? Boolean(store.featured) : false;
+
+      setPickerValue("picker-edLogo", store ? store.logo : "");
+      setPickerValue("picker-edCover", store ? store.cover : "");
+
+      const prodContainer = document.getElementById("edProductsContainer");
+      prodContainer.innerHTML = "";
+      (store?.products || []).forEach(p => addProductRowToEditor(p));
+
+      document.getElementById("storeEditorModal").classList.add("open");
+    }
+
+    function addProductRowToEditor(prod = {}) {
+      productRowCounter += 1;
+      const pickerId = `picker-prod-${productRowCounter}`;
+      const container = document.getElementById("edProductsContainer");
+      const row = document.createElement("div");
+      row.className = "form-grid ed-prod-row";
+      row.dataset.pickerId = pickerId;
+      row.dataset.prodId = prod.id || "";
+      row.style.cssText = "background:var(--bg-elevated);padding:10px;border-radius:12px;border:1px solid var(--border);";
+      row.innerHTML = `
+        <input type="text" class="input-control prod-name" placeholder="اسم المنتج *" value="${escapeAttr(prod.name || "")}" />
+        <input type="text" class="input-control prod-price" placeholder="السعر (مثال: 35,000 د.ع)" value="${escapeAttr(prod.price || "")}" />
+        <div class="full" id="${pickerId}"></div>
+        <div class="full" style="display:flex;justify-content:flex-end;">
+          <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.ed-prod-row').remove()">حذف المنتج</button>
+        </div>
+      `;
+      container.appendChild(row);
+      mountImagePicker(pickerId, {
+        folder: "products",
+        fallbackType: "product",
+        initialUrl: prod.image || ""
+      });
+    }
+
+    async function saveAdminStore(event) {
+      event.preventDefault();
+      const modalAlert = document.getElementById("storeModalAlert");
+      const saveBtn = document.getElementById("saveStoreModalBtn");
+
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = `<span class="spinner"></span> جاري رفع الصور وحفظ المتجر في Google Sheets...`;
+
+      try {
+        const logoUrl = await resolvePickerToDriveUrl("picker-edLogo", "");
+        const coverUrl = await resolvePickerToDriveUrl("picker-edCover", "");
+
+        const prodRows = Array.from(document.querySelectorAll(".ed-prod-row"));
+        const products = [];
+        for (const row of prodRows) {
+          const pName = row.querySelector(".prod-name").value.trim();
+          const pPrice = row.querySelector(".prod-price").value.trim();
+          if (!pName) continue;
+          const pImgUrl = await resolvePickerToDriveUrl(row.dataset.pickerId, "");
+          products.push({
+            id: row.dataset.prodId || "",
+            name: pName,
+            price: pPrice,
+            image: pImgUrl
+          });
+        }
+
+        const payload = {
+          id: document.getElementById("editStoreId").value.trim(),
+          name: document.getElementById("edStoreName").value.trim(),
+          ownerName: document.getElementById("edOwnerName").value.trim(),
+          category: document.getElementById("edCategory").value,
+          city: document.getElementById("edCity").value,
+          instagram: document.getElementById("edInstagram").value.trim(),
+          tiktok: document.getElementById("edTiktok").value.trim(),
+          phone: document.getElementById("edPhone").value.trim(),
+          whatsapp: document.getElementById("edWhatsapp").value.trim(),
+          address: document.getElementById("edAddress").value.trim(),
+          logo: logoUrl,
+          cover: coverUrl,
+          description: document.getElementById("edDescription").value.trim(),
+          status: document.getElementById("edPublished").checked ? "published" : "hidden",
+          featured: document.getElementById("edFeatured").checked,
+          products
+        };
+
+        const res = await callAppsScript("saveStore", payload, 45000);
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل حفظ المتجر.");
+
+        closeModal("storeEditorModal");
+        showAdminGlobalAlert("success", `تم حفظ متجر "${payload.name}" في Google Sheets بنجاح.`);
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        modalAlert.className = "alert-box show alert-danger";
+        modalAlert.textContent = err.message;
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = "حفظ بيانات المتجر في Google Sheets";
+      }
+    }
+
+    async function toggleStorePublish(storeId) {
+      try {
+        const res = await callAppsScript("toggleStorePublish", { id: storeId });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل التحديث.");
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        showAdminGlobalAlert("danger", err.message);
+      }
+    }
+
+    async function deleteStore(storeId) {
+      if (!confirm("هل أنت متأكد من حذف هذا المتجر وجميع منتجاته نهائياً من Google Sheets؟")) return;
+      try {
+        const res = await callAppsScript("deleteStore", { id: storeId });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل الحذف.");
+        showAdminGlobalAlert("success", "تم حذف المتجر من قاعدة البيانات.");
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        showAdminGlobalAlert("danger", err.message);
+      }
+    }
+
+    function renderAdminCategoriesTable() {
+      const tbody = document.getElementById("adminCategoriesTbody");
+      if (!appState.categories.length) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--ink-muted);padding:18px;">لا توجد تصنيفات بعد.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = appState.categories.map(cat => {
+        const count = appState.stores.filter(s => s.category === cat.name).length;
+        return `
+          <tr>
+            <td><img src="${escapeAttr(cat.image || FALLBACK_IMAGES.category)}" style="width:46px;height:34px;border-radius:8px;object-fit:cover;" onerror="handleImgFallback(this,'category')" /></td>
+            <td><strong>${escapeHtml(cat.name)}</strong></td>
+            <td>${escapeHtml(cat.description || "")}</td>
+            <td>${count}</td>
+            <td>
+              <div style="display:flex;gap:6px;">
+                <button class="btn btn-outline btn-sm" onclick="editCategoryItem('${escapeAttr(cat.id)}')">تعديل</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteCategoryItem('${escapeAttr(cat.id)}')">حذف</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function editCategoryItem(catId) {
+      const cat = appState.categories.find(c => String(c.id) === String(catId));
+      if (!cat) return;
+      document.getElementById("editCatId").value = cat.id;
+      document.getElementById("catNameInput").value = cat.name;
+      document.getElementById("catSortInput").value = cat.sortOrder || 1;
+      document.getElementById("catDescInput").value = cat.description || "";
+      setPickerValue("picker-catImage", cat.image || "");
+    }
+
+    function clearCategoryForm() {
+      document.getElementById("editCatId").value = "";
+      document.getElementById("catNameInput").value = "";
+      document.getElementById("catSortInput").value = "1";
+      document.getElementById("catDescInput").value = "";
+      clearPickerImage("picker-catImage");
+    }
+
+    async function saveCategoryItem() {
+      const alertEl = document.getElementById("categorySaveAlert");
+      const btn = document.getElementById("saveCatBtn");
+      btn.disabled = true;
+      btn.textContent = "جاري الحفظ...";
+
+      try {
+        const image = await resolvePickerToDriveUrl("picker-catImage", "");
+        const res = await callAppsScript("saveCategory", {
+          id: document.getElementById("editCatId").value.trim(),
+          name: document.getElementById("catNameInput").value.trim(),
+          sortOrder: Number(document.getElementById("catSortInput").value) || 0,
+          description: document.getElementById("catDescInput").value.trim(),
+          image
+        });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل حفظ التصنيف.");
+
+        clearCategoryForm();
+        alertEl.className = "alert-box show alert-success";
+        alertEl.textContent = "تم حفظ التصنيف في Google Sheets بنجاح.";
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        alertEl.className = "alert-box show alert-danger";
+        alertEl.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "حفظ التصنيف";
+      }
+    }
+
+    async function deleteCategoryItem(catId) {
+      if (!confirm("هل تريد حذف هذا التصنيف؟")) return;
+      try {
+        const res = await callAppsScript("deleteCategory", { id: catId });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل حذف التصنيف.");
+        showAdminGlobalAlert("success", "تم حذف التصنيف.");
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        showAdminGlobalAlert("danger", err.message);
+      }
+    }
+
+    function renderAdminBannersTable() {
+      const tbody = document.getElementById("adminBannersTbody");
+      if (!appState.banners.length) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--ink-muted);padding:18px;">لا توجد بانرات إعلانية مضافة.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = appState.banners.map(b => `
+        <tr>
+          <td><img src="${escapeAttr(b.image)}" style="width:64px;height:36px;border-radius:8px;object-fit:cover;" onerror="handleImgFallback(this,'cover')" /></td>
+          <td><strong>${escapeHtml(b.title)}</strong><br/><small>${escapeHtml(b.subtitle || "")}</small></td>
+          <td><span class="status-pill ${b.active ? "status-approved" : "status-pending"}">${b.active ? "مفعّل" : "موقف"}</span></td>
+          <td>
+            <div style="display:flex;gap:6px;">
+              <button class="btn btn-outline btn-sm" onclick="editBannerItem('${escapeAttr(b.id)}')">تعديل</button>
+              <button class="btn btn-danger btn-sm" onclick="deleteBannerItem('${escapeAttr(b.id)}')">حذف</button>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function editBannerItem(id) {
+      const b = appState.banners.find(x => String(x.id) === String(id));
+      if (!b) return;
+      document.getElementById("editBannerId").value = b.id;
+      document.getElementById("bnrTitleInput").value = b.title;
+      document.getElementById("bnrSubtitleInput").value = b.subtitle || "";
+      document.getElementById("bnrLinkInput").value = b.linkUrl || "";
+      document.getElementById("bnrBtnTextInput").value = b.buttonText || "استكشف الآن";
+      document.getElementById("bnrActiveInput").checked = Boolean(b.active);
+      setPickerValue("picker-bannerImage", b.image || "");
+    }
+
+    function clearBannerForm() {
+      document.getElementById("editBannerId").value = "";
+      document.getElementById("bnrTitleInput").value = "";
+      document.getElementById("bnrSubtitleInput").value = "";
+      document.getElementById("bnrLinkInput").value = "";
+      document.getElementById("bnrBtnTextInput").value = "استكشف الآن";
+      document.getElementById("bnrActiveInput").checked = true;
+      clearPickerImage("picker-bannerImage");
+    }
+
+    async function saveBannerItem() {
+      const alertEl = document.getElementById("bannerSaveAlert");
+      const btn = document.getElementById("saveBannerBtn");
+      btn.disabled = true;
+      btn.textContent = "جاري الحفظ...";
+
+      try {
+        const image = await resolvePickerToDriveUrl("picker-bannerImage", "");
+        const res = await callAppsScript("saveBanner", {
+          id: document.getElementById("editBannerId").value.trim(),
+          title: document.getElementById("bnrTitleInput").value.trim(),
+          subtitle: document.getElementById("bnrSubtitleInput").value.trim(),
+          linkUrl: document.getElementById("bnrLinkInput").value.trim(),
+          buttonText: document.getElementById("bnrBtnTextInput").value.trim(),
+          active: document.getElementById("bnrActiveInput").checked,
+          image
+        });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل حفظ البانر.");
+
+        clearBannerForm();
+        alertEl.className = "alert-box show alert-success";
+        alertEl.textContent = "تم حفظ البانر في Google Sheets بنجاح.";
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        alertEl.className = "alert-box show alert-danger";
+        alertEl.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "حفظ البانر";
+      }
+    }
+
+    async function deleteBannerItem(id) {
+      if (!confirm("هل تريد حذف هذا البانر؟")) return;
+      try {
+        const res = await callAppsScript("deleteBanner", { id });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل حذف البانر.");
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        showAdminGlobalAlert("danger", err.message);
+      }
+    }
+
+    async function saveSiteSettings() {
+      const alertEl = document.getElementById("mediaSaveAlert");
+      const btn = document.getElementById("saveSettingsBtn");
+      btn.disabled = true;
+      btn.textContent = "جاري رفع الصور وحفظ الإعدادات...";
+
+      try {
+        const heroImg = await resolvePickerToDriveUrl("picker-setHeroImg", DEFAULT_SITE_SETTINGS.heroImg);
+        const promoImg = await resolvePickerToDriveUrl("picker-setPromoImg", DEFAULT_SITE_SETTINGS.promoImg);
+        const aboutImg = await resolvePickerToDriveUrl("picker-setAboutImg", DEFAULT_SITE_SETTINGS.aboutImg);
+        const joinImg = await resolvePickerToDriveUrl("picker-setJoinImg", DEFAULT_SITE_SETTINGS.joinImg);
+
+        const res = await callAppsScript("saveSiteSettings", {
+          heroTitle: document.getElementById("setHeroTitle").value.trim(),
+          heroSubtitle: document.getElementById("setHeroSubtitle").value.trim(),
+          heroImg,
+          promoImg,
+          aboutImg,
+          joinImg
+        }, 45000);
+
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل حفظ الإعدادات.");
+        alertEl.className = "alert-box show alert-success";
+        alertEl.textContent = "تم حفظ إعدادات الموقع والصور في Google Sheets بنجاح.";
+        await loadPublicBootstrapData();
+      } catch (err) {
+        alertEl.className = "alert-box show alert-danger";
+        alertEl.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "حفظ الإعدادات في Google Sheets";
+      }
+    }
+
+    async function importDefaultBazarSeed() {
+      const alertEl = document.getElementById("migrationAlert");
+      const btn = document.getElementById("seedInitialBtn");
+      btn.disabled = true;
+      btn.textContent = "جاري الاستيراد إلى Google Sheets...";
+      try {
+        const res = await callAppsScript("importMigrationData", INITIAL_MIGRATION_SEED, 45000);
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل الاستيراد.");
+        alertEl.className = "alert-box show alert-success";
+        alertEl.textContent = `تم استيراد ${res.importedCategories} تصنيفات و ${res.importedStores} متاجر بنجاح.`;
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        alertEl.className = "alert-box show alert-danger";
+        alertEl.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "استيراد التصنيفات والمتاجر التأسيسية إلى Google Sheets";
+      }
+    }
+
+    async function importCustomMigrationJson() {
+      const alertEl = document.getElementById("migrationAlert");
+      const raw = document.getElementById("migrationJsonInput").value.trim();
+      if (!raw) return;
+      try {
+        const parsed = JSON.parse(raw);
+        const res = await callAppsScript("importMigrationData", parsed, 45000);
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل استيراد JSON.");
+        alertEl.className = "alert-box show alert-success";
+        alertEl.textContent = `تم استيراد ${res.importedCategories} تصنيفات و ${res.importedStores} متاجر.`;
+        await refreshAdminDataFromServer();
+        await loadPublicBootstrapData();
+      } catch (err) {
+        alertEl.className = "alert-box show alert-danger";
+        alertEl.textContent = "خطأ في الاستيراد: " + err.message;
+      }
+    }
+
+    async function handleAdminPasswordChange(event) {
+      event.preventDefault();
+      const alertEl = document.getElementById("securityAlert");
+      const btn = document.getElementById("secUpdateBtn");
+      const currentPassword = document.getElementById("secCurrentPass").value;
+      const newPassword = document.getElementById("secNewPass").value;
+      const confirmPassword = document.getElementById("secConfirmPass").value;
+
+      if (newPassword !== confirmPassword) {
+        alertEl.className = "alert-box show alert-danger";
+        alertEl.textContent = "كلمة المرور الجديدة وتأكيدها غير متطابقين.";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "جاري التحديث...";
+
+      try {
+        const res = await callAppsScript("changeAdminPassword", { currentPassword, newPassword });
+        if (!res || !res.ok) throw new Error((res && res.error) || "فشل تغيير كلمة المرور.");
+        document.getElementById("secCurrentPass").value = "";
+        document.getElementById("secNewPass").value = "";
+        document.getElementById("secConfirmPass").value = "";
+        alertEl.className = "alert-box show alert-success";
+        alertEl.textContent = res.message || "تم تحديث كلمة مرور المدير بنجاح.";
+      } catch (err) {
+        alertEl.className = "alert-box show alert-danger";
+        alertEl.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "تحديث كلمة المرور";
+      }
+    }
+
+    function navigateTo(viewName, param) {
+      document.querySelectorAll(".page-view").forEach(v => v.classList.remove("active"));
+      document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.nav === viewName));
+      document.getElementById("mobileDrawer").classList.remove("open");
+
+      if (viewName === "store-detail" && param) {
+        appState.activeStoreId = param;
+        renderStoreDetailPage(param);
+      }
+
+      const target = document.getElementById(`view-${viewName}`);
+      if (target) {
+        target.classList.add("active");
+        try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) {}
+      }
+
+      if (viewName === "stores") renderStoresDirectory();
+      if (viewName === "categories") renderCategoriesViews();
+      if (viewName === "admin") renderAdminDashboard();
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById("mobileDrawer").classList.toggle("open");
+    }
+
+    function switchAdminTab(paneName, btnEl) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".admin-pane").forEach(p => p.classList.remove("active"));
+      if (btnEl) btnEl.classList.add("active");
+      document.getElementById(`admin-pane-${paneName}`).classList.add("active");
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("open");
+    }
+
+    function showAdminGlobalAlert(type, msg) {
+      const el = document.getElementById("adminGlobalAlert");
+      if (!el) return;
+      el.className = `alert-box show alert-${type}`;
+      el.textContent = msg;
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+    function escapeAttr(str) { return escapeHtml(str); }
+
+    function bazarInit() {
+      loadSavedSessionToken();
+      initStaticPickers();
+      loadPublicBootstrapData();
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", bazarInit);
+    } else {
+      bazarInit();
+    }
+  </script>
+  <script>
+  /* BAZAR loader: runs the app source as a classic script AFTER document.write finishes,
+     and shows the exact error location on screen if anything fails. */
+  (function () {
+    var holder = document.getElementById("bazar-app-src");
+    var src = holder ? holder.textContent : "";
+    function report(msg, line, col) {
+      var lines = src.split("\n");
+      var snippet = line ? lines.slice(Math.max(0, line - 3), line + 2).join("\n") : "";
+      var box = document.createElement("pre");
+      box.style.cssText = "position:fixed;z-index:99999;bottom:0;left:0;right:0;max-height:45vh;overflow:auto;margin:0;padding:12px;background:#300;color:#fff;font:12px/1.5 monospace;direction:ltr;text-align:left;white-space:pre-wrap";
+      box.textContent = "BAZAR script error: " + msg + (line ? "\nline " + line + ", col " + col + " (inside app script)\n----\n" + snippet : "") + "\nsource length: " + src.length;
+      (document.body || document.documentElement).appendChild(box);
+    }
+    if (!src) { report("app source not found or empty", 0, 0); return; }
+    var failed = false;
+    function onErr(e) {
+      if (failed || !e) return;
+      failed = true;
+      report(e.message, e.lineno, e.colno);
+    }
+    window.addEventListener("error", onErr);
+    try {
+      var s = document.createElement("script");
+      s.text = src;
+      document.head.appendChild(s);
+    } catch (ex) {
+      report(String(ex && ex.message || ex), 0, 0);
+    }
+    window.removeEventListener("error", onErr);
+  })();
+  </script>
+</body>
+</html>
